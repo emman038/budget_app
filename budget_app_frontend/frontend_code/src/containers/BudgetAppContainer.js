@@ -7,8 +7,17 @@ import EditEntryForm from "../components/editEntryRouteComponents/editEntryFormC
 import SelectEntry from "../components/editEntryRouteComponents/selectEntryComponents/SelectEntry";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useState } from "react";
 
 const BudgetAppContainer = () => {
+
+    const [listOfEntries, setListOfEntries] = useState(null);
+    const [currentTimeFrame, setCurrentTimeFrame] = useState(null);
+    const [dashboardEntries, setDashboardEntries] = useState(null);
+    const [entryToEdit, setEntryToEdit] = useState(null);
+
+    // Classifications are the sources and categories for the entries
+    const [listOfClassifications, setListOfClassifications] = useState(null);
 
     const budgetAppRoutes = createBrowserRouter([
         {

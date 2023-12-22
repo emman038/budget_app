@@ -5,8 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e55c6d36-2bca-460e-9ed3-6567c9b2ef7e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../budget_app_frontend/frontend_code/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../budget_app_frontend/frontend_code/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../budget_app_frontend/frontend_code/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../budget_app_frontend/frontend_code/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../budget_app_frontend/frontend_code/src/containers/BudgetAppContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../budget_app_frontend/frontend_code/src/containers/BudgetAppContainer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -27,10 +25,10 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2Zp2VAtn4WauAp4oia0KyxI6VgA" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -39,14 +37,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="BudgetApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.Budget.Application.Budget.Application.BudgetApplication" />
