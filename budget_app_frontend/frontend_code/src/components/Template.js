@@ -1,6 +1,19 @@
+import { Link, Outlet } from "react-router-dom";
+
 const Template = () => {
     return (
-        <p>This is the Template</p>
+        <>
+            <nav>
+                <ul>
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/select-time-frame">View Dashboard</Link></li>
+                    <li><Link to="/add-entry">Add an entry</Link></li>
+                    <li><Link to="/select-entry">Edit an Existing Entry</Link></li>
+                </ul>
+            </nav>
+            <Outlet />
+            <footer></footer>
+        </>
     );
 }
  

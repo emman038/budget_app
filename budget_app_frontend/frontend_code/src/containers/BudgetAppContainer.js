@@ -6,17 +6,47 @@ import TimeFrame from "../components/dashboardRouteComponents/timeFrameComponent
 import EditEntryForm from "../components/editEntryRouteComponents/editEntryFormComponents/EditEntryForm";
 import SelectEntry from "../components/editEntryRouteComponents/selectEntryComponents/SelectEntry";
 
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 const BudgetAppContainer = () => {
+
+    const budgetAppRoutes = createBrowserRouter([
+        {
+            path: "/",
+            element: <Template />,
+            children: [
+            {
+                path: "/",
+                element: <LandingPage/>
+            },
+            {
+                path: "/select-time-frame",
+                element: <TimeFrame/>
+            },
+            {
+                path: "/dashboard",
+                element: <Dashboard/>
+            },
+            {
+                path: "/add-entry",
+                element: <AddEntryForm />
+            },
+            {
+                path: "/select-entry",
+                element: <SelectEntry />
+            },
+            {
+                path: "/edit-entry",
+                element: <EditEntryForm />
+            }
+        ]
+        }
+    ])
+
     return ( 
         <>
             <p>Container</p>
-            <Template />
-            <LandingPage/>
-            <TimeFrame/> 
-            <Dashboard/>
-            <AddEntryForm />
-            <SelectEntry />
-            <EditEntryForm />
+            <RouterProvider router={budgetAppRoutes} /> 
         </>
      );
 }
