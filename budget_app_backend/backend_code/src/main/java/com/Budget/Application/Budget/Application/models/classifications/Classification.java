@@ -1,9 +1,13 @@
 package com.Budget.Application.Budget.Application.models.classifications;
 
+import com.Budget.Application.Budget.Application.models.ClassificationType;
 import jakarta.persistence.*;
 
 @MappedSuperclass
 public class Classification {
+
+    @Column
+    private ClassificationType classificationType;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
