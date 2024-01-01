@@ -2,6 +2,7 @@ package com.Budget.Application.Budget.Application.services.entriesServices;
 
 import com.Budget.Application.Budget.Application.models.dtos.EntriesByMonthDTO;
 import com.Budget.Application.Budget.Application.models.dtos.EntriesByYearDTO;
+import com.Budget.Application.Budget.Application.models.entries.Income;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -35,21 +36,26 @@ public class EntriesService {
         List<EntriesByYearDTO> entriesByYearDTOList = new ArrayList<>();
 
         for (Integer year: distinctYearsOfEntries){
-            List<EntriesByMonthDTO> entriesByMonthDTOList = new ArrayList<>();
-            for (int month = 1; month <= 12; month++) {
-                EntriesByMonthDTO entriesByMonthDTO = new EntriesByMonthDTO(month,
-                        incomeService.findIncomeByMonthAndYear(month, year),
-                        expenseService.findExpenseByMonthAndYear(month, year),
-                        budgetService.findBudgetByMonthAndYear(month, year),
-                        actualSavingService.findActualSavingByMonthAndYear(month, year),
-                        savingGoalService.findSavingGoalByMonthAndYear(month, year));
-
-                entriesByMonthDTOList.add(entriesByMonthDTO);
-            }
+            List<EntriesByMonthDTO> entriesByMonthDTOList = getEntriesForAYear(year);
             EntriesByYearDTO entriesByYearDTO = new EntriesByYearDTO(year, entriesByMonthDTOList);
             entriesByYearDTOList.add(entriesByYearDTO);
         }
         return entriesByYearDTOList;
+    }
+
+    public List<EntriesByMonthDTO> getEntriesForAYear(int year){
+        List<EntriesByMonthDTO> entriesByMonthDTOList = new ArrayList<>();
+        for (int month = 1; month <= 12; month++) {
+            EntriesByMonthDTO entriesByMonthDTO = new EntriesByMonthDTO(month,
+                    incomeService.findIncomeByMonthAndYear(month, year),
+                    expenseService.findExpenseByMonthAndYear(month, year),
+                    budgetService.findBudgetByMonthAndYear(month, year),
+                    actualSavingService.findActualSavingByMonthAndYear(month, year),
+                    savingGoalService.findSavingGoalByMonthAndYear(month, year));
+
+            entriesByMonthDTOList.add(entriesByMonthDTO);
+        }
+        return entriesByMonthDTOList;
     }
 
     public List<Integer> getDistinctYearsOfEntries() {
