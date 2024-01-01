@@ -13,7 +13,7 @@ public class Expense extends Entry{
 
     @ManyToOne
     @JoinColumn(name = "expense_category_id")
-    @JsonIgnoreProperties({"expenses"})
+    @JsonIgnoreProperties({"expenses", "budgets"})
     private ExpenseCategory expenseCategory;
 
     @Column

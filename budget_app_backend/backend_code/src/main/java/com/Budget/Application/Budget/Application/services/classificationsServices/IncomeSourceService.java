@@ -16,4 +16,9 @@ public class IncomeSourceService {
     public List<IncomeSource> getAllIncomeSources(){
         return incomeSourceRepository.findAll();
     }
+
+    public IncomeSource addIncomeSource(IncomeSource incomeSourceToAdd){
+        incomeSourceRepository.save(incomeSourceToAdd);
+        return incomeSourceToAdd;
+    }
 }

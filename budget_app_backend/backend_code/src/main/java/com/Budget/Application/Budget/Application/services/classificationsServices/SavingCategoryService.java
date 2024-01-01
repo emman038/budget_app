@@ -16,4 +16,9 @@ public class SavingCategoryService {
     public List<SavingCategory> getAllSavingCategories(){
         return savingCategoryRepository.findAll();
     }
+
+    public SavingCategory addSavingCategory(SavingCategory savingCategoryToAdd){
+        savingCategoryRepository.save(savingCategoryToAdd);
+        return savingCategoryToAdd;
+    }
 }

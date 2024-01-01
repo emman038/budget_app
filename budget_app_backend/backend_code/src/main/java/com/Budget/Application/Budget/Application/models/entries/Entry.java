@@ -5,15 +5,16 @@ import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
-@MappedSuperclass
-public abstract class Entry {
-
-    @Column
-    private EntryType entryType;
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+public class Entry {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column
+    private EntryType entryType;
 
     @Column(name = "time_of_creation")
     @Temporal(TemporalType.TIMESTAMP)

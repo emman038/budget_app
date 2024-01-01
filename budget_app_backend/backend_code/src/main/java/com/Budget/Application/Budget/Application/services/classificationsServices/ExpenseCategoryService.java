@@ -16,4 +16,9 @@ public class ExpenseCategoryService {
     public List<ExpenseCategory> getAllExpenseCategories(){
         return expenseCategoryRepository.findAll();
     }
+
+    public ExpenseCategory addExpenseCategory(ExpenseCategory expenseCategoryToAdd){
+        expenseCategoryRepository.save(expenseCategoryToAdd);
+        return expenseCategoryToAdd;
+    }
 }

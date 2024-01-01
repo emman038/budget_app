@@ -13,7 +13,7 @@ public class ActualSaving extends Entry{
 
     @ManyToOne
     @JoinColumn(name = "saving_category_id")
-    @JsonIgnoreProperties({"actualSavings"})
+    @JsonIgnoreProperties({"actualSavings", "savingGoals"})
     private SavingCategory savingCategory;
 
     @Column

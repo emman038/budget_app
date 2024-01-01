@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,10 +22,10 @@ public class SavingCategory extends Classification{
     @JsonIgnoreProperties({"savingCategory"})
     private List<SavingGoal> savingGoals;
 
-    public SavingCategory(String name, String description, List<ActualSaving> actualSavings, List<SavingGoal> savingGoals) {
+    public SavingCategory(String name, String description) {
         super(name, description);
-        this.actualSavings = actualSavings;
-        this.savingGoals = savingGoals;
+        this.actualSavings = new ArrayList<>();
+        this.savingGoals = new ArrayList<>();
     }
 
     public SavingCategory() {
