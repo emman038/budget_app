@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class IncomeService {
@@ -23,6 +24,10 @@ public class IncomeService {
 
     public List<Income> getAllIncomes(){
         return incomeRepository.findAll();
+    }
+
+    public Optional<Income> getIncomeById(Long id){
+        return incomeRepository.findById(id);
     }
 
     public Income addIncome(Income incomeToAdd){

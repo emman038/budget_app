@@ -1,0 +1,41 @@
+package com.Budget.Application.Budget.Application.controllers;
+
+import com.Budget.Application.Budget.Application.models.entries.Expense;
+import com.Budget.Application.Budget.Application.services.entriesServices.ExpenseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+@Controller
+@RequestMapping("/expenses")
+public class ExpenseController {
+
+    @Autowired
+    ExpenseService expenseService;
+
+    @GetMapping
+    public ResponseEntity<List<Expense>> getAllExpenses(){
+        return new ResponseEntity<>(expenseService.getAllExpenses(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<Expense> getExpenseById(@PathVariable Long id){
+        Optional<Expense> optionalExpense = expenseService.getExpenseById(id);
+
+        if (optionalExpense.isPresent()){
+            return new ResponseEntity<>(optionalExpense.get(), HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
+    @PostMapping
+    public ResponseEntity<Expense> addExpense(@RequestBody Expense expense){
+        return new ResponseEntity<>(expenseService.addExpense(expense), HttpStatus.OK);
+    }
+}
