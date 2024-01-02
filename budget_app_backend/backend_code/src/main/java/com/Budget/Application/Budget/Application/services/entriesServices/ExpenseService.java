@@ -34,4 +34,22 @@ public class ExpenseService {
         expenseRepository.save(expenseToAdd);
         return expenseToAdd;
     }
+
+    public Expense modifyExpense(Expense expense) {
+        Expense expenseToModify = expenseRepository.findById(expense.getId()).get();
+
+        expenseToModify.setNumberOfEdits(expenseToModify.getNumberOfEdits() + 1);
+        expenseToModify.setExpenseCategory(expense.getExpenseCategory());
+        expenseToModify.setAmount(expense.getAmount());
+        expenseToModify.setDescription(expense.getDescription());
+        expenseToModify.setTimeOfLastEdit(expense.getTimeOfLastEdit());
+
+        expenseRepository.save(expenseToModify);
+
+        return expenseToModify;
+    }
+
+    public void deleteExpenseById(Long id){
+        expenseRepository.deleteById(id);
+    }
 }

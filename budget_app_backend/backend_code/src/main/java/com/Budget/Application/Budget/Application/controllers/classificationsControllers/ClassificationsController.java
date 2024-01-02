@@ -1,4 +1,4 @@
-package com.Budget.Application.Budget.Application.controllers;
+package com.Budget.Application.Budget.Application.controllers.classificationsControllers;
 
 import com.Budget.Application.Budget.Application.models.dtos.ClassificationDTO;
 import com.Budget.Application.Budget.Application.services.classificationsServices.ClassificationsService;

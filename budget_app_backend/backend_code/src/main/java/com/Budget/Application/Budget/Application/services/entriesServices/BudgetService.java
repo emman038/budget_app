@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BudgetService {
@@ -25,8 +26,30 @@ public class BudgetService {
         return budgetRepository.findAll();
     }
 
+    public Optional<Budget> getBudgetById(Long id){
+        return budgetRepository.findById(id);
+    }
+
     public Budget addBudget(Budget budgetToAdd){
         budgetRepository.save(budgetToAdd);
         return budgetToAdd;
+    }
+
+    public Budget modifyBudget(Budget budget) {
+        Budget budgetToModify = budgetRepository.findById(budget.getId()).get();
+
+        budgetToModify.setNumberOfEdits(budgetToModify.getNumberOfEdits() + 1);
+        budgetToModify.setExpenseCategory(budget.getExpenseCategory());
+        budgetToModify.setAmount(budget.getAmount());
+        budgetToModify.setDescription(budget.getDescription());
+        budgetToModify.setTimeOfLastEdit(budget.getTimeOfLastEdit());
+
+        budgetRepository.save(budgetToModify);
+
+        return budgetToModify;
+    }
+
+    public void deleteBudgetById(Long id){
+        budgetRepository.deleteById(id);
     }
 }

@@ -34,4 +34,23 @@ public class IncomeService {
         incomeRepository.save(incomeToAdd);
         return incomeToAdd;
     }
+
+    public Income modifyIncome(Income income) {
+        Income incomeToModify = incomeRepository.findById(income.getId()).get();
+
+        incomeToModify.setNumberOfEdits(incomeToModify.getNumberOfEdits() + 1);
+        incomeToModify.setIncomeSource(income.getIncomeSource());
+        incomeToModify.setPostTaxAmount(income.getPostTaxAmount());
+        incomeToModify.setPreTaxAmount(income.getPreTaxAmount());
+        incomeToModify.setDescription(income.getDescription());
+        incomeToModify.setTimeOfLastEdit(income.getTimeOfLastEdit());
+
+        incomeRepository.save(incomeToModify);
+
+        return incomeToModify;
+    }
+
+    public void deleteIncomeById(Long id) {
+        incomeRepository.deleteById(id);
+    }
 }

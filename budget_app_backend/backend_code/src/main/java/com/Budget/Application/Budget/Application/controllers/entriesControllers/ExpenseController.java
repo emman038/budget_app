@@ -1,4 +1,4 @@
-package com.Budget.Application.Budget.Application.controllers;
+package com.Budget.Application.Budget.Application.controllers.entriesControllers;
 
 import com.Budget.Application.Budget.Application.models.entries.Expense;
 import com.Budget.Application.Budget.Application.services.entriesServices.ExpenseService;
@@ -36,6 +36,29 @@ public class ExpenseController {
 
     @PostMapping
     public ResponseEntity<Expense> addExpense(@RequestBody Expense expense){
-        return new ResponseEntity<>(expenseService.addExpense(expense), HttpStatus.OK);
+        return new ResponseEntity<>(expenseService.addExpense(expense), HttpStatus.CREATED);
+    }
+
+    @PatchMapping
+    public ResponseEntity<Expense> modifyExpense(@RequestBody Expense expense){
+        Optional<Expense> optionalExpense = expenseService.getExpenseById(expense.getId());
+
+        if (optionalExpense.isPresent()){
+            return new ResponseEntity<>(expenseService.modifyExpense(expense), HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity deleteExpenseById(@PathVariable Long id){
+        Optional<Expense> optionalExpense = expenseService.getExpenseById(id);
+
+        if (optionalExpense.isPresent()){
+            expenseService.deleteExpenseById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SavingGoalService {
@@ -28,5 +29,27 @@ public class SavingGoalService {
     public SavingGoal addSavingGoal(SavingGoal savingGoalToAdd){
         savingGoalRepository.save(savingGoalToAdd);
         return savingGoalToAdd;
+    }
+
+    public Optional<SavingGoal> getSavingGoalById(Long id) {
+        return savingGoalRepository.findById(id);
+    }
+
+    public SavingGoal modifySavingGoal(SavingGoal savingGoal) {
+        SavingGoal savingGoalToModify = savingGoalRepository.findById(savingGoal.getId()).get();
+
+        savingGoalToModify.setNumberOfEdits(savingGoalToModify.getNumberOfEdits() + 1);
+        savingGoalToModify.setSavingCategory(savingGoal.getSavingCategory());
+        savingGoalToModify.setAmount(savingGoal.getAmount());
+        savingGoalToModify.setDescription(savingGoal.getDescription());
+        savingGoalToModify.setTimeOfLastEdit(savingGoal.getTimeOfLastEdit());
+
+        savingGoalRepository.save(savingGoalToModify);
+
+        return savingGoalToModify;
+    }
+
+    public void deleteSavingGoalsById(Long id){
+        savingGoalRepository.deleteById(id);
     }
 }

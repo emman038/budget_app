@@ -1,4 +1,4 @@
-package com.Budget.Application.Budget.Application.controllers;
+package com.Budget.Application.Budget.Application.controllers.entriesControllers;
 
 import com.Budget.Application.Budget.Application.models.entries.Income;
 import com.Budget.Application.Budget.Application.services.entriesServices.IncomeService;
@@ -36,6 +36,29 @@ public class IncomeController {
 
     @PostMapping
     public ResponseEntity<Income> addIncome(@RequestBody Income income){
-        return new ResponseEntity<>(incomeService.addIncome(income), HttpStatus.OK);
+        return new ResponseEntity<>(incomeService.addIncome(income), HttpStatus.CREATED);
+    }
+
+    @PatchMapping
+    public ResponseEntity<Income> modifyIncome(Income income){
+        Optional<Income> optionalIncome = incomeService.getIncomeById(income.getId());
+
+        if (optionalIncome.isPresent()){
+            return new ResponseEntity<>(incomeService.modifyIncome(income), HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity deleteIncomeById(@PathVariable Long id){
+        Optional<Income> optionalIncome = incomeService.getIncomeById(id);
+
+        if (optionalIncome.isPresent()){
+            incomeService.deleteIncomeById(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

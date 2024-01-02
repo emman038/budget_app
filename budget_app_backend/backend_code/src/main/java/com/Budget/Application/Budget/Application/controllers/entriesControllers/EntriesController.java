@@ -1,4 +1,4 @@
-package com.Budget.Application.Budget.Application.controllers;
+package com.Budget.Application.Budget.Application.controllers.entriesControllers;
 
 import com.Budget.Application.Budget.Application.models.dtos.EntriesByMonthDTO;
 import com.Budget.Application.Budget.Application.models.dtos.EntriesByYearDTO;
