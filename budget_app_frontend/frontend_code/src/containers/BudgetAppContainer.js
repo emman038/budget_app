@@ -25,8 +25,15 @@ const BudgetAppContainer = () => {
         setListOfEntries(data);
     };
 
+    const fetchClassifications = async ()=>{
+        const response = await fetch("http://localhost:8080/classifications")
+        const data = await response.json();
+        setListOfClassifications(data);
+    };
+
     useEffect(()=>{
         fetchEntries();
+        fetchClassifications();
     },[])
 
     const budgetAppRoutes = createBrowserRouter([
@@ -48,7 +55,7 @@ const BudgetAppContainer = () => {
             },
             {
                 path: "/add-entry",
-                element: <AddEntryForm />
+                element: <AddEntryForm listOfClassifications={listOfClassifications}/>
             },
             {
                 path: "/select-entry",

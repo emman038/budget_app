@@ -1,6 +1,12 @@
 const IncomeForm = () => {
     return ( 
-        <p>IncomeForm</p>
+        <form>
+            description
+            incomeSource
+            preTaxAmount
+            postTaxAmount
+            timeOfCreation - use current time or past time
+        </form>
      );
 }
  

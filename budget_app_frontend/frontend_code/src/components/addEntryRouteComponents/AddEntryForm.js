@@ -4,16 +4,16 @@ import ExpenseForm from "./ExpenseForm";
 import IncomeForm from "./IncomeForm";
 import SavingGoalForm from "./SavingGoalForm";
 
-const AddEntryForm = () => {
+const AddEntryForm = ({listOfClassifications}) => {
     return ( 
-        <>
+        <main>
             <p>AddEntryForm</p>
             <IncomeForm />
             <ExpenseForm />
             <BudgetForm />
-            <ActualSavingForm />
+            <ActualSavingForm listOfIncomeSources={listOfClassifications.incomeSources}/>
             <SavingGoalForm />
-        </>
+        </main>
      );
 }
  
