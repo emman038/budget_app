@@ -5,13 +5,18 @@ import IncomeForm from "./IncomeForm";
 import SavingGoalForm from "./SavingGoalForm";
 
 const AddEntryForm = ({listOfClassifications}) => {
+    
+    if (!listOfClassifications){
+        return <p>Page Loading...</p>
+    }
+
     return ( 
         <main>
             <p>AddEntryForm</p>
-            <IncomeForm />
+            <IncomeForm listOfIncomeSources={listOfClassifications.incomeSources}/>
             <ExpenseForm />
             <BudgetForm />
-            <ActualSavingForm listOfIncomeSources={listOfClassifications.incomeSources}/>
+            <ActualSavingForm/>
             <SavingGoalForm />
         </main>
      );
