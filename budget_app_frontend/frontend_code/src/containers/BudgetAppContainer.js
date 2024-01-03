@@ -7,7 +7,7 @@ import EditEntryForm from "../components/editEntryRouteComponents/editEntryFormC
 import SelectEntry from "../components/editEntryRouteComponents/selectEntryComponents/SelectEntry";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const BudgetAppContainer = () => {
 
@@ -18,6 +18,16 @@ const BudgetAppContainer = () => {
 
     // Classifications are the sources and categories for the entries
     const [listOfClassifications, setListOfClassifications] = useState(null);
+
+    const fetchEntries = async ()=>{
+        const response = await fetch("http://localhost:8080/entries");
+        const data = await response.json();
+        setListOfEntries(data);
+    };
+
+    useEffect(()=>{
+        fetchEntries();
+    },[])
 
     const budgetAppRoutes = createBrowserRouter([
         {

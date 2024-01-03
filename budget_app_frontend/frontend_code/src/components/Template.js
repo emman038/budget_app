@@ -11,6 +11,7 @@ const Template = () => {
                     <li><Link to="/select-entry">Edit an Existing Entry</Link></li>
                 </ul>
             </nav>
+            <h1>Title</h1>
             <Outlet />
             <footer></footer>
         </>
