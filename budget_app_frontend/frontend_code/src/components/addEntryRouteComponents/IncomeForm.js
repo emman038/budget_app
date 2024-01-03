@@ -2,7 +2,7 @@ const IncomeForm = ({listOfIncomeSources}) => {
 
     const generateOptions = ()=>{
         return listOfIncomeSources.map((incomeSource)=>{
-            return <option  id={incomeSource.id} value={incomeSource}></option>
+            return <option  id={incomeSource.id} value={incomeSource}>{incomeSource.name}</option>
         });
     };
 
@@ -10,7 +10,7 @@ const IncomeForm = ({listOfIncomeSources}) => {
         <form>
             <label htmlFor="income-sources-select">Choose a source of income</label>
             <select name="income-sources" id="income-sources-select">
-                <option value="" disabled selected hidden>--Please choose and option--</option>
+                <option value="" disabled selected>--Please choose and option--</option>
                 {generateOptions()}
             </select>
             incomeSource
