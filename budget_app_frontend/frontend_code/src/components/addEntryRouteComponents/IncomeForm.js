@@ -24,16 +24,15 @@ const IncomeForm = ({listOfIncomeSources}) => {
 
         setSateIncome(copiedIncome);
 
-        // setSateIncome(
-        // {
-        //     entryType : "INCOME",
-        //     timeOfCreation : null,
-        //     description : null,
-        //     incomeSourceId : null,
-        //     preTaxAmount : 0,
-        //     postTaxAmount : 0
-        // }
-        // )
+        setSateIncome(
+        {
+            entryType : "INCOME",
+            timeOfCreation : null,
+            description : null,
+            incomeSourceId : null,
+            preTaxAmount : 0,
+            postTaxAmount : 0
+        })
         
     };
 
