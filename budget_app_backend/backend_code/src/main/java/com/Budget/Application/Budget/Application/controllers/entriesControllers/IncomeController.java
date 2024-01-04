@@ -1,5 +1,6 @@
 package com.Budget.Application.Budget.Application.controllers.entriesControllers;
 
+import com.Budget.Application.Budget.Application.models.dtos.IncomeDTO;
 import com.Budget.Application.Budget.Application.models.entries.Income;
 import com.Budget.Application.Budget.Application.services.entriesServices.IncomeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +36,8 @@ public class IncomeController {
     }
 
     @PostMapping
-    public ResponseEntity<Income> addIncome(@RequestBody Income income){
-        return new ResponseEntity<>(incomeService.addIncome(income), HttpStatus.CREATED);
+    public ResponseEntity<Income> addIncome(@RequestBody IncomeDTO incomeDTO){
+        return new ResponseEntity<>(incomeService.addIncomeForController(incomeDTO), HttpStatus.CREATED);
     }
 
     @PatchMapping
