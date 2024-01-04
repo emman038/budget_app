@@ -10,7 +10,7 @@ const IncomeForm = ({listOfIncomeSources}) => {
             entryType : "INCOME",
             timeOfCreation : null,
             description : null,
-            incomeSource : null,
+            incomeSourceId : null,
             preTaxAmount : 0,
             postTaxAmount : 0
         }
@@ -19,11 +19,21 @@ const IncomeForm = ({listOfIncomeSources}) => {
     const handleFormSubmit = (event)=>{
         event.preventDefault();
 
-        let timeOfCreationProperty = "timeOfCreation";
-
         let copiedIncome = {...stateIncome};
-        copiedIncome[timeOfCreationProperty] = new Date();
+        copiedIncome.timeOfCreation = new Date();
 
+        setSateIncome(copiedIncome);
+
+        // setSateIncome(
+        // {
+        //     entryType : "INCOME",
+        //     timeOfCreation : null,
+        //     description : null,
+        //     incomeSourceId : null,
+        //     preTaxAmount : 0,
+        //     postTaxAmount : 0
+        // }
+        // )
         
     };
 
@@ -44,16 +54,21 @@ const IncomeForm = ({listOfIncomeSources}) => {
 
     return ( 
         <form id="income-form" onSubmit={handleFormSubmit}>
-            <label htmlFor="income-sources-select">Choose a source of income</label>
-            <select name="incomeSource" id="income-sources-select" onChange={handleChange}>
-                <option key="disabled-selected-income-sources" value="" disabled selected>--Please choose and option--</option>
+            <p>(*) Required fields</p>
+            <label htmlFor="income-sources-select">Choose a source of income * </label>
+            <select required name="incomeSourceId" id="income-sources-select" onChange={handleChange}>
+                <option key="disabled-selected-income-sources" value="" disabled selected>--Please choose an option--</option>
                 {generateOptions()}
             </select>
-            incomeSource
-            description
-            preTaxAmount
-            postTaxAmount
+            <label htmlFor="description-input-box">Write a description of the Income Entry </label>
+            <textarea onChange={handleChange} name="description" type="text" maxLength={255} id="description-input-box" autoComplete="on" placeholder="Enter a brief description of anything to note about this entry"/>
+            <label htmlFor="preTax-Input">Enter the Pre-tax Income</label>
+            <input required onChange={handleChange} name="preTaxAmount" type="number" id="preTax-Input" placeholder="Write the Pre-tax amount here" autoComplete="on"/>
+            <label htmlFor="postTax-Input">Enter the Post-tax Income</label>
+            <input required onChange={handleChange} name="postTaxAmount" type="number" id="postTax-Input" placeholder="Write the Post-tax amount here" autoComplete="on"/>
+
             timeOfCreation - use current time or past time
+            <button type="submit">Add the Entry</button>
         </form>
      );
 }
