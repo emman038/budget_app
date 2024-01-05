@@ -8,6 +8,8 @@ import com.Budget.Application.Budget.Application.services.classificationsService
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,8 +47,14 @@ public class IncomeService {
         incomeToAdd.setPreTaxAmount(incomeDTO.getPreTaxAmount());
         incomeToAdd.setPostTaxAmount(incomeDTO.getPostTaxAmount());
         incomeToAdd.setDescription(incomeDTO.getDescription());
-        incomeToAdd.setTimeOfCreation(incomeDTO.getTimeOfCreation());
         incomeToAdd.setEntryType(incomeDTO.getEntryType());
+
+        String dateString = incomeDTO.getTimeOfCreation();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+
+        LocalDateTime localDateTime = LocalDateTime.parse(dateString, formatter);
+
+        incomeToAdd.setTimeOfCreation(localDateTime);
 
         incomeRepository.save(incomeToAdd);
         Income addedIncome = incomeRepository.findById(incomeToAdd.getId()).get();
