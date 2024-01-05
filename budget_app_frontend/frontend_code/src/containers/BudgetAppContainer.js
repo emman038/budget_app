@@ -34,7 +34,19 @@ const BudgetAppContainer = () => {
     useEffect(()=>{
         fetchEntries();
         fetchClassifications();
-    },[])
+    },[]);
+
+    const postEntry = async (newEntry, entryType)=>{
+        const response = await fetch(`http://localhost:8080/${entryType}`, {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(newEntry)
+        })
+        const data = await response.json();
+        
+        fetchEntries();
+        fetchClassifications();
+    };
 
     const budgetAppRoutes = createBrowserRouter([
         {
@@ -55,7 +67,7 @@ const BudgetAppContainer = () => {
             },
             {
                 path: "/add-entry",
-                element: <AddEntryForm listOfClassifications={listOfClassifications}/>
+                element: <AddEntryForm listOfClassifications={listOfClassifications} postEntry={postEntry}/>
             },
             {
                 path: "/select-entry",

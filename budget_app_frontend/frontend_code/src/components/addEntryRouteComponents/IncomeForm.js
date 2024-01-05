@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const IncomeForm = ({listOfIncomeSources}) => {
+const IncomeForm = ({listOfIncomeSources, postEntry}) => {
 
     const navigate = useNavigate();
 
@@ -20,9 +20,13 @@ const IncomeForm = ({listOfIncomeSources}) => {
         event.preventDefault();
 
         let copiedIncome = {...stateIncome};
-        copiedIncome.timeOfCreation = new Date();
+
+        let timePropertyName = "timeOfCreation";
+        copiedIncome[timePropertyName] = new Date().toISOString().slice(0, 19);;
 
         setSateIncome(copiedIncome);
+
+        postEntry(stateIncome, "incomes");
 
         setSateIncome(
         {
@@ -32,8 +36,7 @@ const IncomeForm = ({listOfIncomeSources}) => {
             incomeSourceId : null,
             preTaxAmount : 0,
             postTaxAmount : 0
-        })
-        
+        })        
     };
 
     const handleChange = (event)=>{
@@ -55,8 +58,8 @@ const IncomeForm = ({listOfIncomeSources}) => {
         <form id="income-form" onSubmit={handleFormSubmit}>
             <p>(*) Required fields</p>
             <label htmlFor="income-sources-select">Choose a source of income * </label>
-            <select required name="incomeSourceId" id="income-sources-select" onChange={handleChange}>
-                <option key="disabled-selected-income-sources" value="" disabled selected>--Please choose an option--</option>
+            <select required name="incomeSourceId" id="income-sources-select" onChange={handleChange} defaultValue="">
+                <option key="disabled-selected-income-sources" value="" disabled>--Please choose an option--</option>
                 {generateOptions()}
             </select>
             <label htmlFor="description-input-box">Write a description of the Income Entry </label>
