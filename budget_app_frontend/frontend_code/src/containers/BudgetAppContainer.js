@@ -68,7 +68,7 @@ const BudgetAppContainer = () => {
             },
             {
                 path: "/add-entry",
-                element: <AddEntryForm listOfClassifications={listOfClassifications} postEntry={postEntry} entryToAdd={entryToAdd}/>
+                element: <AddEntryForm listOfClassifications={listOfClassifications} postEntry={postEntry} entryToAdd={entryToAdd} setEntryToAdd={setEntryToAdd}/>
             },
             {
                 path: "/select-entry",
