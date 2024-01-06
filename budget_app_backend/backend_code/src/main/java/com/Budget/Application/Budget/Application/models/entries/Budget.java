@@ -11,13 +11,13 @@ import java.time.LocalDateTime;
 @Table(name = "budgets")
 public class Budget extends Entry{
 
+    @Column
+    private int amount;
+
     @ManyToOne
     @JoinColumn(name = "expense_category_id")
     @JsonIgnoreProperties({"expenses", "budgets"})
     private ExpenseCategory expenseCategory;
-
-    @Column
-    private int amount;
 
     public Budget(EntryType entryType, LocalDateTime timeOfCreation, ExpenseCategory expenseCategory, int amount) {
         super(entryType, timeOfCreation);

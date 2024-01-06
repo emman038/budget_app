@@ -12,16 +12,16 @@ import java.time.LocalDateTime;
 @Table(name = "incomes")
 public class Income extends Entry{
 
-    @ManyToOne
-    @JoinColumn(name = "income_source_id")
-    @JsonIgnoreProperties({"incomes"})
-    private IncomeSource incomeSource;
-
     @Column
     private int preTaxAmount;
 
     @Column
     private int postTaxAmount;
+
+    @ManyToOne
+    @JoinColumn(name = "income_source_id")
+    @JsonIgnoreProperties({"incomes"})
+    private IncomeSource incomeSource;
 
     public Income(EntryType entryType, LocalDateTime timeOfCreation, IncomeSource incomeSource, int preTaxAmount, int postTaxAmount) {
         super(entryType, timeOfCreation);

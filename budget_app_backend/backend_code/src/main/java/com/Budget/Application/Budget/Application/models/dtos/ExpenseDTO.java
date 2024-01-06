@@ -14,10 +14,10 @@ public class ExpenseDTO {
 
     private Integer amount;
 
-    public ExpenseDTO(EntryType entryType, String timeOfCreation, String description, Long expenseCategoryId, Integer amount) {
+    public ExpenseDTO(EntryType entryType, String timeOfCreation, Long expenseCategoryId, Integer amount) {
         this.entryType = entryType;
         this.timeOfCreation = timeOfCreation;
-        this.description = description;
+        this.description = null;
         this.expenseCategoryId = expenseCategoryId;
         this.amount = amount;
     }
