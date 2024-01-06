@@ -6,20 +6,26 @@ import SavingGoalForm from "./SavingGoalForm";
 
 import { useState } from "react";
 
-const AddEntryForm = ({listOfClassifications, postEntry, entryToAdd, setEntryToAdd}) => {
+const AddEntryForm = ({ listOfClassifications, postEntry, entryToAdd, setEntryToAdd }) => {
 
     const [stateSelectedEntry, setStateSelectedEntry] = useState("income");
 
-    const handleEntrySelection = (event)=>{
-        setStateSelectedEntry(event.target.value)
+    const classificationsCheck = () => {
+        if (!listOfClassifications) {
+            return <p>Page Loading...</p>
+        };
     };
 
-    const handleFormSubmit = (event)=>{
-        event.preventDefault();
-        setEntryToAdd(stateSelectedEntry);
-    };
+    const handleEntrySelectionForm = () => {
+        const handleEntrySelection = (event) => {
+            setStateSelectedEntry(event.target.value)
+        };
 
-    if (!entryToAdd){
+        const handleFormSubmit = (event) => {
+            event.preventDefault();
+            setEntryToAdd(stateSelectedEntry);
+        };
+
         return (
             <form id="selectEntryToAddForm" onSubmit={handleFormSubmit}>
                 <p>Select the type of Entry you'd like to add</p>
@@ -38,20 +44,27 @@ const AddEntryForm = ({listOfClassifications, postEntry, entryToAdd, setEntryToA
         );
     };
 
-    if (!listOfClassifications){
-        return <p>Page Loading...</p>
+    const generateForms = () => {
+        switch (entryToAdd) {
+            case "income":
+                return <IncomeForm listOfIncomeSources={listOfClassifications.incomeSources} postEntry={postEntry} />;
+            case "expense":
+                return <ExpenseForm listOfExpenseCategories={listOfClassifications.expenseCategories} postEntry={postEntry} />;
+            case "budget":
+                return <BudgetForm listOfExpenseCategories={listOfClassifications.expenseCategories} postEntry={postEntry} />;
+            case "actualSavings":
+                return <ActualSavingForm listOfExpenseCategories={listOfClassifications.savingCategories} postEntry={postEntry} />;
+            case "actualSavings":
+                return <SavingGoalForm listOfExpenseCategories={listOfClassifications.savingCategories} postEntry={postEntry} />;
+        }
     };
 
-    return ( 
+    return (
         <main>
-            <p>AddEntryForm</p>
-            <IncomeForm listOfIncomeSources={listOfClassifications.incomeSources} postEntry={postEntry}/>
-            <ExpenseForm />
-            <BudgetForm />
-            <ActualSavingForm/>
-            <SavingGoalForm />
+            {classificationsCheck}
+            {entryToAdd ? generateForms() : handleEntrySelectionForm()}
         </main>
-     );
+    );
 }
- 
+
 export default AddEntryForm;
