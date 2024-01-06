@@ -28,7 +28,12 @@ const IncomeForm = ({ listOfIncomeSources, postEntry }) => {
         let copiedIncome = { ...stateIncome };
 
         let timePropertyName = "timeOfCreation";
-        copiedIncome[timePropertyName] = new Date().toISOString().slice(0, 19);;
+
+        if (stateSelectedTimeOfCreation=== "currentTime"){
+            copiedIncome[timePropertyName] = new Date().toISOString().slice(0, 19);
+        } else {
+            copiedIncome[timePropertyName] = event.target.elements.namedItem("past-date-time-input").value + ":00";
+        };
 
         setSateIncome(copiedIncome);
 
