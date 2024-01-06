@@ -66,31 +66,31 @@ const IncomeForm = ({ listOfIncomeSources, postEntry }) => {
     };
 
     return (
-        <form id="income-form" onSubmit={handleFormSubmit}>
+        <form id="incomeForm" onSubmit={handleFormSubmit}>
             <p>(*) Required fields</p>
-            <label htmlFor="income-sources-select">Choose a source of income * </label>
-            <select required name="incomeSourceId" id="income-sources-select" onChange={handleChange} defaultValue="">
-                <option key="disabled-selected-income-sources" value="" disabled>--Please choose an option--</option>
+            <label htmlFor="incomeSourcesSelect">Choose a source of income * </label>
+            <select required name="incomeSourceId" id="incomeSourcesSelect" onChange={handleChange} defaultValue="">
+                <option key="disabledSelectedIncomeSources" value="" disabled>--Please choose an option--</option>
                 {generateOptions()}
             </select>
 
-            <label htmlFor="description-input-box">Write a description of the Income Entry </label>
-            <textarea onChange={handleChange} name="description" type="text" maxLength={255} id="description-input-box" autoComplete="on" placeholder="Enter a brief description of anything to note about this entry" />
+            <label htmlFor="descriptionInputBox">Write a description of the Income Entry </label>
+            <textarea onChange={handleChange} name="description" type="text" maxLength={255} id="descriptionInputBox" autoComplete="on" placeholder="Enter a brief description of anything to note about this entry" />
             
-            <label htmlFor="preTax-Input">Enter the Pre-tax Income *</label>
-            <input required onChange={handleChange} name="preTaxAmount" type="number" id="preTax-Input" placeholder="Write the Pre-tax amount here" autoComplete="on" />
-            <label htmlFor="postTax-Input">Enter the Post-tax Income *</label>
-            <input required onChange={handleChange} name="postTaxAmount" type="number" id="postTax-Input" placeholder="Write the Post-tax amount here" autoComplete="on" />
+            <label htmlFor="preTaxInput">Enter the Pre-tax Income *</label>
+            <input required onChange={handleChange} name="preTaxAmount" type="number" id="preTaxInput" placeholder="Write the Pre-tax amount here" autoComplete="on" />
+            <label htmlFor="postTaxInput">Enter the Post-tax Income *</label>
+            <input required onChange={handleChange} name="postTaxAmount" type="number" id="postTaxInput" placeholder="Write the Post-tax amount here" autoComplete="on" />
 
             <legend>Would you like to use the current date and time as the time of creation for this entry or a date and time in the past? *</legend>
-            <label htmlFor="current-date-time">Current date and time</label>
-            <input type="radio" id="current-date-time" name="selectTimeOfCreation" value="currentTime" checked={stateSelectedTimeOfCreation === "currentTime"} onChange={handleTimeOfCreationSelection} />
-            <label htmlFor="past-date-time">Date and time in the past</label>
-            <input type="radio" id="past-date-time" name="selectTimeOfCreation" value="pastTime" checked={stateSelectedTimeOfCreation === "pastTime"} onChange={handleTimeOfCreationSelection} />
+            <label htmlFor="currentDateTime">Current date and time</label>
+            <input type="radio" id="currentDateTime" name="selectTimeOfCreation" value="currentTime" checked={stateSelectedTimeOfCreation === "currentTime"} onChange={handleTimeOfCreationSelection} />
+            <label htmlFor="pastDateTime">Date and time in the past</label>
+            <input type="radio" id="pastDateTime" name="selectTimeOfCreation" value="pastTime" checked={stateSelectedTimeOfCreation === "pastTime"} onChange={handleTimeOfCreationSelection} />
 
             <div className={stateSelectedTimeOfCreation === "pastTime" ? "date-time-input-show" : "date-time-input" }>
-            <label htmlFor="past-date-time-input">Select a date and time *</label>
-            <input type="datetime-local" name="timeOfCreation" id="past-date-time-input"/>
+            <label htmlFor="pastDateTimeInput">Select a date and time *</label>
+            <input type="datetime-local" name="timeOfCreation" id="pastDateTimeInput"/>
             </div>
 
             <button type="submit">Add the Entry</button>

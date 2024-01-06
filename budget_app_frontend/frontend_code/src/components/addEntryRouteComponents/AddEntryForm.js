@@ -4,11 +4,19 @@ import ExpenseForm from "./ExpenseForm";
 import IncomeForm from "./IncomeForm";
 import SavingGoalForm from "./SavingGoalForm";
 
-const AddEntryForm = ({listOfClassifications, postEntry}) => {
+const AddEntryForm = ({listOfClassifications, postEntry, entryToAdd}) => {
+
+    if (!entryToAdd){
+        return (
+            <form id="selectEntryToAddForm">
+                <p>Select the type of Entry you want to add</p>
+            </form>
+        );
+    };
 
     if (!listOfClassifications){
         return <p>Page Loading...</p>
-    }
+    };
 
     return ( 
         <main>

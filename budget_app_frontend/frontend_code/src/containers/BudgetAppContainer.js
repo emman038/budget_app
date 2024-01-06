@@ -15,6 +15,7 @@ const BudgetAppContainer = () => {
     const [currentTimeFrame, setCurrentTimeFrame] = useState(null);
     const [dashboardEntries, setDashboardEntries] = useState(null);
     const [entryToEdit, setEntryToEdit] = useState(null);
+    const [entryToAdd, setEntryToAdd] = useState(null);
 
     // Classifications are the sources and categories for the entries
     const [listOfClassifications, setListOfClassifications] = useState(null);
@@ -67,7 +68,7 @@ const BudgetAppContainer = () => {
             },
             {
                 path: "/add-entry",
-                element: <AddEntryForm listOfClassifications={listOfClassifications} postEntry={postEntry}/>
+                element: <AddEntryForm listOfClassifications={listOfClassifications} postEntry={postEntry} entryToAdd={entryToAdd}/>
             },
             {
                 path: "/select-entry",
