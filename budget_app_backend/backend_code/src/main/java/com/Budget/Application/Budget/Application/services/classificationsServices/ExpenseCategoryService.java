@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ExpenseCategoryService {
@@ -15,6 +16,10 @@ public class ExpenseCategoryService {
 
     public List<ExpenseCategory> getAllExpenseCategories(){
         return expenseCategoryRepository.findAll();
+    }
+
+    public Optional<ExpenseCategory> getExpenseCategoryById(Long id) {
+        return expenseCategoryRepository.findById(id);
     }
 
     public ExpenseCategory addExpenseCategory(ExpenseCategory expenseCategoryToAdd){

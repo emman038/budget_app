@@ -49,10 +49,10 @@ public class IncomeService {
         incomeToAdd.setDescription(incomeDTO.getDescription());
         incomeToAdd.setEntryType(incomeDTO.getEntryType());
 
-        String dateString = incomeDTO.getTimeOfCreation();
+        String dateTimeString = incomeDTO.getTimeOfCreation();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
-        LocalDateTime localDateTime = LocalDateTime.parse(dateString, formatter);
+        LocalDateTime localDateTime = LocalDateTime.parse(dateTimeString, formatter);
 
         incomeToAdd.setTimeOfCreation(localDateTime);
 

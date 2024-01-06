@@ -1,9 +1,6 @@
 package com.Budget.Application.Budget.Application.models.dtos;
 
 import com.Budget.Application.Budget.Application.models.EntryType;
-import com.fasterxml.jackson.annotation.JsonFormat;
-
-import java.time.LocalDateTime;
 
 public class IncomeDTO {
 

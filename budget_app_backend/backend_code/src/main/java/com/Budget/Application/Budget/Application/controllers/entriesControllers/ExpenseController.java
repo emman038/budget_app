@@ -1,5 +1,6 @@
 package com.Budget.Application.Budget.Application.controllers.entriesControllers;
 
+import com.Budget.Application.Budget.Application.models.dtos.ExpenseDTO;
 import com.Budget.Application.Budget.Application.models.entries.Expense;
 import com.Budget.Application.Budget.Application.services.entriesServices.ExpenseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +36,8 @@ public class ExpenseController {
     }
 
     @PostMapping
-    public ResponseEntity<Expense> addExpense(@RequestBody Expense expense){
-        return new ResponseEntity<>(expenseService.addExpense(expense), HttpStatus.CREATED);
+    public ResponseEntity<Expense> addExpense(@RequestBody ExpenseDTO expenseDTO){
+        return new ResponseEntity<>(expenseService.addExpenseForController(expenseDTO), HttpStatus.CREATED);
     }
 
     @PatchMapping

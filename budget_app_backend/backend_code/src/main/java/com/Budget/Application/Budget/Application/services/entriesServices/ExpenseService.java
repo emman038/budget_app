@@ -1,10 +1,15 @@
 package com.Budget.Application.Budget.Application.services.entriesServices;
 
+import com.Budget.Application.Budget.Application.models.classifications.ExpenseCategory;
+import com.Budget.Application.Budget.Application.models.dtos.ExpenseDTO;
 import com.Budget.Application.Budget.Application.models.entries.Expense;
 import com.Budget.Application.Budget.Application.repositories.entriesRepositories.ExpenseRepository;
+import com.Budget.Application.Budget.Application.services.classificationsServices.ExpenseCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +18,9 @@ public class ExpenseService {
 
     @Autowired
     ExpenseRepository expenseRepository;
+
+    @Autowired
+    ExpenseCategoryService expenseCategoryService;
 
     public List<Integer> getExpenseYears(){
         return expenseRepository.findDistinctYears();
@@ -28,6 +36,28 @@ public class ExpenseService {
 
     public Optional<Expense> getExpenseById(Long id){
         return expenseRepository.findById(id);
+    }
+
+    public Expense addExpenseForController(ExpenseDTO expenseDTO) {
+        ExpenseCategory expenseCategory = expenseCategoryService.getExpenseCategoryById(expenseDTO.getExpenseCategoryId()).get();
+
+        Expense expenseToAdd = new Expense();
+
+        expenseToAdd.setExpenseCategory(expenseCategory);
+        expenseToAdd.setAmount(expenseDTO.getAmount());
+        expenseToAdd.setDescription(expenseDTO.getDescription());
+        expenseToAdd.setEntryType(expenseDTO.getEntryType());
+
+        String dateTimeString = expenseDTO.getTimeOfCreation();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+
+        LocalDateTime localDateTime = LocalDateTime.parse(dateTimeString, formatter);
+
+        expenseToAdd.setTimeOfCreation(localDateTime);
+
+        expenseRepository.save(expenseToAdd);
+        Expense addedExpense = expenseRepository.findById(expenseToAdd.getId()).get();
+        return addedExpense;
     }
 
     public Expense addExpense(Expense expenseToAdd){
