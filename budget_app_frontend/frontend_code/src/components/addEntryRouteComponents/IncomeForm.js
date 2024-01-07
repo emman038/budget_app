@@ -82,17 +82,6 @@ const IncomeForm = ({ listOfIncomeSources, postEntry }) => {
             <label htmlFor="postTaxInput">Enter the Post-tax Income *</label>
             <input required onChange={handleChange} name="postTaxAmount" type="number" id="postTaxInput" placeholder="Write the Post-tax amount here" autoComplete="on" />
 
-            <legend>Would you like to use the current date and time as the time of creation for this entry or a date and time in the past? *</legend>
-            <label htmlFor="currentDateTime">Current date and time</label>
-            <input type="radio" id="currentDateTime" name="selectTimeOfCreation" value="currentTime" checked={stateSelectedTimeOfCreation === "currentTime"} onChange={handleTimeOfCreationSelection} />
-            <label htmlFor="pastDateTime">Date and time in the past</label>
-            <input type="radio" id="pastDateTime" name="selectTimeOfCreation" value="pastTime" checked={stateSelectedTimeOfCreation === "pastTime"} onChange={handleTimeOfCreationSelection} />
-
-            <div className={stateSelectedTimeOfCreation === "pastTime" ? "date-time-input-show" : "date-time-input" }>
-            <label htmlFor="pastDateTimeInput">Select a date and time *</label>
-            <input type="datetime-local" name="timeOfCreation" id="pastDateTimeInput"/>
-            </div>
-
             <button type="submit">Add the Entry</button>
         </form>
     );

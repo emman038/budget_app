@@ -49,12 +49,7 @@ public class IncomeService {
         incomeToAdd.setDescription(incomeDTO.getDescription());
         incomeToAdd.setEntryType(incomeDTO.getEntryType());
 
-        String dateTimeString = incomeDTO.getTimeOfCreation();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
-
-        LocalDateTime localDateTime = LocalDateTime.parse(dateTimeString, formatter);
-
-        incomeToAdd.setTimeOfCreation(localDateTime);
+        incomeToAdd.setTimeOfCreation(LocalDateTime.now());
 
         incomeRepository.save(incomeToAdd);
         Income addedIncome = incomeRepository.findById(incomeToAdd.getId()).get();

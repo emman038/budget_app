@@ -6,8 +6,6 @@ public class IncomeDTO {
 
     private EntryType entryType;
 
-    private String timeOfCreation;
-
     private String description;
 
     private Long incomeSourceId;
@@ -16,9 +14,8 @@ public class IncomeDTO {
 
     private Integer postTaxAmount;
 
-    public IncomeDTO(EntryType entryType, String timeOfCreation, Long incomeSourceId, Integer preTaxAmount, Integer postTaxAmount) {
+    public IncomeDTO(EntryType entryType, Long incomeSourceId, Integer preTaxAmount, Integer postTaxAmount) {
         this.entryType = entryType;
-        this.timeOfCreation = timeOfCreation;
         this.description = null;
         this.incomeSourceId = incomeSourceId;
         this.preTaxAmount = preTaxAmount;
@@ -34,14 +31,6 @@ public class IncomeDTO {
 
     public void setEntryType(EntryType entryType) {
         this.entryType = entryType;
-    }
-
-    public String getTimeOfCreation() {
-        return timeOfCreation;
-    }
-
-    public void setTimeOfCreation(String timeOfCreation) {
-        this.timeOfCreation = timeOfCreation;
     }
 
     public String getDescription() {
