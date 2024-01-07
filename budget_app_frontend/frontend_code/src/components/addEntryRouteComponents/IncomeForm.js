@@ -30,7 +30,7 @@ const IncomeForm = ({ listOfIncomeSources, postEntry }) => {
         if (stateSelectedTimeOfCreation=== "currentTime"){
             copiedIncome[timePropertyName] = new Date().toISOString().slice(0, 19);
         } else {
-            copiedIncome[timePropertyName] = event.target.elements.namedItem("past-date-time-input").value + ":00";
+            copiedIncome[timePropertyName] = event.target.elements.namedItem("pastDateTimeInput").value + ":00";
         };
 
         console.log(copiedIncome);
