@@ -22,9 +22,7 @@ const IncomeForm = ({ listOfIncomeSources, postEntry }) => {
         setStateSelectedTimeOfCreation(event.target.value)
     };
 
-    const handleFormSubmit = (event) => {
-        event.preventDefault();
-
+    const handleTimeOfCreationGeneration = (event)=>{
         let copiedIncome = { ...stateIncome };
 
         let timePropertyName = "timeOfCreation";
@@ -35,14 +33,22 @@ const IncomeForm = ({ listOfIncomeSources, postEntry }) => {
             copiedIncome[timePropertyName] = event.target.elements.namedItem("past-date-time-input").value + ":00";
         };
 
+        console.log(copiedIncome);
+
         setSateIncome(copiedIncome);
+        console.log(stateIncome);
+    };
+
+    const handleFormSubmit = (event) => {
+        event.preventDefault();
+
+        handleTimeOfCreationGeneration(event);
 
         postEntry(stateIncome, "incomes");
 
         setSateIncome(
             {
                 entryType: "INCOME",
-                timeOfCreation: null,
                 description: null,
                 incomeSourceId: null,
                 preTaxAmount: 0,
@@ -75,12 +81,12 @@ const IncomeForm = ({ listOfIncomeSources, postEntry }) => {
             </select>
 
             <label htmlFor="descriptionInputBox">Write a description of the Income Entry </label>
-            <textarea onChange={handleChange} name="description" type="text" maxLength={255} id="descriptionInputBox" autoComplete="on" placeholder="Enter a brief description of anything to note about this entry" />
+            <textarea value={stateIncome.description} onChange={handleChange} name="description" type="text" maxLength={255} id="descriptionInputBox" autoComplete="on" placeholder="Enter a brief description of anything to note about this entry" />
             
             <label htmlFor="preTaxInput">Enter the Pre-tax Income *</label>
-            <input required onChange={handleChange} name="preTaxAmount" type="number" id="preTaxInput" placeholder="Write the Pre-tax amount here" autoComplete="on" />
+            <input value={stateIncome.preTaxAmount} required onChange={handleChange} name="preTaxAmount" type="number" id="preTaxInput" placeholder="Write the Pre-tax amount here" autoComplete="on" />
             <label htmlFor="postTaxInput">Enter the Post-tax Income *</label>
-            <input required onChange={handleChange} name="postTaxAmount" type="number" id="postTaxInput" placeholder="Write the Post-tax amount here" autoComplete="on" />
+            <input value={stateIncome.postTaxAmount} required onChange={handleChange} name="postTaxAmount" type="number" id="postTaxInput" placeholder="Write the Post-tax amount here" autoComplete="on" />
 
             <legend>Would you like to use the current date and time as the time of creation for this entry or a date and time in the past? *</legend>
             <label htmlFor="currentDateTime">Current date and time</label>
