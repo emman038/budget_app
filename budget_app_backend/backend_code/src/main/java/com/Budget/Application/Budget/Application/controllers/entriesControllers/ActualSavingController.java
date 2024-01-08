@@ -1,5 +1,6 @@
 package com.Budget.Application.Budget.Application.controllers.entriesControllers;
 
+import com.Budget.Application.Budget.Application.models.dtos.SavingsDTO;
 import com.Budget.Application.Budget.Application.models.entries.ActualSaving;
 import com.Budget.Application.Budget.Application.services.entriesServices.ActualSavingService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +36,8 @@ public class ActualSavingController {
     }
 
     @PostMapping
-    public ResponseEntity<ActualSaving> addActualSaving(@RequestBody ActualSaving actualSaving){
-        return new ResponseEntity<>(actualSavingService.addActualSaving(actualSaving), HttpStatus.CREATED);
+    public ResponseEntity<ActualSaving> addActualSaving(@RequestBody SavingsDTO actualSavingDTO){
+        return new ResponseEntity<>(actualSavingService.addActualSavingForController(actualSavingDTO), HttpStatus.CREATED);
     }
 
     @PatchMapping

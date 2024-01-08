@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SavingCategoryService {
@@ -15,6 +16,10 @@ public class SavingCategoryService {
 
     public List<SavingCategory> getAllSavingCategories(){
         return savingCategoryRepository.findAll();
+    }
+
+    public Optional<SavingCategory> getSavingCategoryById(Long id){
+        return savingCategoryRepository.findById(id);
     }
 
     public SavingCategory addSavingCategory(SavingCategory savingCategoryToAdd){
