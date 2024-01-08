@@ -53,9 +53,9 @@ const AddEntryForm = ({ listOfClassifications, postEntry, entryToAdd, setEntryTo
             case "budget":
                 return <BudgetForm listOfExpenseCategories={listOfClassifications.expenseCategories} postEntry={postEntry} />;
             case "actualSavings":
-                return <ActualSavingForm listOfExpenseCategories={listOfClassifications.savingCategories} postEntry={postEntry} />;
+                return <ActualSavingForm listOfSavingCategories={listOfClassifications.savingCategories} postEntry={postEntry} />;
             case "actualSavings":
-                return <SavingGoalForm listOfExpenseCategories={listOfClassifications.savingCategories} postEntry={postEntry} />;
+                return <SavingGoalForm listOfSavingCategories={listOfClassifications.savingCategories} postEntry={postEntry} />;
         }
     };
 
