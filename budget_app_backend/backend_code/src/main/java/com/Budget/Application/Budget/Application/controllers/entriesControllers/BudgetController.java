@@ -1,5 +1,6 @@
 package com.Budget.Application.Budget.Application.controllers.entriesControllers;
 
+import com.Budget.Application.Budget.Application.models.dtos.BudgetExpenseDTO;
 import com.Budget.Application.Budget.Application.models.entries.Budget;
 import com.Budget.Application.Budget.Application.services.entriesServices.BudgetService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,8 +36,8 @@ public class BudgetController {
     }
 
     @PostMapping
-    public ResponseEntity<Budget> addBudget(@RequestBody Budget budget){
-        return new ResponseEntity<>(budgetService.addBudget(budget), HttpStatus.CREATED);
+    public ResponseEntity<Budget> addBudget(@RequestBody BudgetExpenseDTO budgetDTO){
+        return new ResponseEntity<>(budgetService.addBudgetForController(budgetDTO), HttpStatus.CREATED);
     }
 
     @PatchMapping

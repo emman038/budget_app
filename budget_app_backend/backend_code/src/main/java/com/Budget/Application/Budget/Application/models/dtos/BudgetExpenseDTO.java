@@ -2,7 +2,7 @@ package com.Budget.Application.Budget.Application.models.dtos;
 
 import com.Budget.Application.Budget.Application.models.EntryType;
 
-public class ExpenseDTO {
+public class BudgetExpenseDTO {
 
     private EntryType entryType;
 
@@ -14,7 +14,7 @@ public class ExpenseDTO {
 
     private Integer amount;
 
-    public ExpenseDTO(EntryType entryType, String timeOfCreation, Long expenseCategoryId, Integer amount) {
+    public BudgetExpenseDTO(EntryType entryType, String timeOfCreation, Long expenseCategoryId, Integer amount) {
         this.entryType = entryType;
         this.timeOfCreation = timeOfCreation;
         this.description = null;
@@ -22,7 +22,7 @@ public class ExpenseDTO {
         this.amount = amount;
     }
 
-    public ExpenseDTO() {
+    public BudgetExpenseDTO() {
     }
 
     public EntryType getEntryType() {

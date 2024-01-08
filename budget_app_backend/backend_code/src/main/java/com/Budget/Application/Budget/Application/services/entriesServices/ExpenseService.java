@@ -1,7 +1,7 @@
 package com.Budget.Application.Budget.Application.services.entriesServices;
 
 import com.Budget.Application.Budget.Application.models.classifications.ExpenseCategory;
-import com.Budget.Application.Budget.Application.models.dtos.ExpenseDTO;
+import com.Budget.Application.Budget.Application.models.dtos.BudgetExpenseDTO;
 import com.Budget.Application.Budget.Application.models.entries.Expense;
 import com.Budget.Application.Budget.Application.repositories.entriesRepositories.ExpenseRepository;
 import com.Budget.Application.Budget.Application.services.classificationsServices.ExpenseCategoryService;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,7 +37,7 @@ public class ExpenseService {
         return expenseRepository.findById(id);
     }
 
-    public Expense addExpenseForController(ExpenseDTO expenseDTO) {
+    public Expense addExpenseForController(BudgetExpenseDTO expenseDTO) {
         ExpenseCategory expenseCategory = expenseCategoryService.getExpenseCategoryById(expenseDTO.getExpenseCategoryId()).get();
 
         Expense expenseToAdd = new Expense();
