@@ -72,7 +72,7 @@ const BudgetAppContainer = () => {
             },
             {
                 path: "/select-entry",
-                element: <SelectEntry />
+                element: <SelectEntry listOfEntries={listOfEntries} entryToEdit={entryToEdit}/>
             },
             {
                 path: "/edit-entry",

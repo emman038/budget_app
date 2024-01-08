@@ -51,7 +51,7 @@ const SavingGoalForm = ({listOfSavingCategories, postEntry}) => {
 
     return (
         <form id="actualSavingForm" onSubmit={handleFormSubmit}>
-            <h3>Savings Goal Entry</h3>
+            <h2>Savings Goal Entry</h2>
             <p>(*) Required fields</p>
             <label htmlFor="savingCategoriesSelect">Choose a source of income * </label>
             <select required name="savingCategoryId" id="savingCategoriesSelect" onChange={handleChange} defaultValue="">

@@ -51,7 +51,7 @@ const ExpenseForm = ({ listOfExpenseCategories, postEntry }) => {
 
     return (
         <form id="expenseForm" onSubmit={handleFormSubmit}>
-            <h3>Expense Entry</h3>
+            <h2>Expense Entry</h2>
             <p>(*) Required fields</p>
             <label htmlFor="expenseCategoriesSelect">Choose an Expense Category * </label>
             <select required name="expenseCategoryId" id="expenseCategoriesSelect" onChange={handleChange} defaultValue="">

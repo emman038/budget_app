@@ -10,10 +10,6 @@ const AddEntryForm = ({ listOfClassifications, postEntry, entryToAdd, setEntryTo
 
     const [stateSelectedEntry, setStateSelectedEntry] = useState("income");
 
-    const classificationsCheck = () => {
-            return <p>Page Loading...</p>
-    };
-
     const handleEntrySelectionForm = () => {
         const handleEntrySelection = (event) => {
             setStateSelectedEntry(event.target.value)
@@ -59,7 +55,7 @@ const AddEntryForm = ({ listOfClassifications, postEntry, entryToAdd, setEntryTo
 
     return (
         <main>
-            {!listOfClassifications ? classificationsCheck() : (entryToAdd ? generateForms() : handleEntrySelectionForm())}
+            {!listOfClassifications ? <p>Page Loading...</p> : (entryToAdd ? generateForms() : handleEntrySelectionForm())}
         </main>
     );
 }

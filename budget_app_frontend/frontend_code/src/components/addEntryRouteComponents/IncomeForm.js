@@ -53,7 +53,7 @@ const IncomeForm = ({ listOfIncomeSources, postEntry }) => {
 
     return (
         <form id="incomeForm" onSubmit={handleFormSubmit}>
-            <h3>Income Entry</h3>
+            <h2>Income Entry</h2>
             <p>(*) Required fields</p>
             <label htmlFor="incomeSourcesSelect">Choose a source of income * </label>
             <select required name="incomeSourceId" id="incomeSourcesSelect" onChange={handleChange} defaultValue="">
