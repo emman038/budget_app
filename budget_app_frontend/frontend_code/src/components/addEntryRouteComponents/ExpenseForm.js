@@ -52,7 +52,7 @@ const ExpenseForm = ({ listOfExpenseCategories, postEntry }) => {
     return (
         <form id="expenseForm" onSubmit={handleFormSubmit}>
             <p>(*) Required fields</p>
-            <label htmlFor="expenseCategoriesSelect">Choose a source of income * </label>
+            <label htmlFor="expenseCategoriesSelect">Choose an Expense Category * </label>
             <select required name="expenseCategoryId" id="expenseCategoriesSelect" onChange={handleChange} defaultValue="">
                 <option key="disabledSelectedExpenseCategories" value="" disabled>--Please choose an option--</option>
                 {generateOptions()}
