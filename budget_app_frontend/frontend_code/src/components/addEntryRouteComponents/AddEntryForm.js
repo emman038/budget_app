@@ -11,9 +11,7 @@ const AddEntryForm = ({ listOfClassifications, postEntry, entryToAdd, setEntryTo
     const [stateSelectedEntry, setStateSelectedEntry] = useState("income");
 
     const classificationsCheck = () => {
-        if (!listOfClassifications) {
             return <p>Page Loading...</p>
-        };
     };
 
     const handleEntrySelectionForm = () => {
@@ -36,9 +34,9 @@ const AddEntryForm = ({ listOfClassifications, postEntry, entryToAdd, setEntryTo
                 <label htmlFor="selectBudget">Budget</label>
                 <input id="selectBudget" type="radio" name="selectEntry" checked={stateSelectedEntry === "budget"} value="budget" onChange={handleEntrySelection} />
                 <label htmlFor="selectActualSavings">Actual Savings</label>
-                <input id="selectActualSavings" type="radio" name="selectEntry" checked={stateSelectedEntry === "actualSavings"} value="actualSavings" onChange={handleEntrySelection} />
+                <input id="selectActualSavings" type="radio" name="selectEntry" checked={stateSelectedEntry === "actualSaving"} value="actualSaving" onChange={handleEntrySelection} />
                 <label htmlFor="selectSavingsGoal">Savings Goal</label>
-                <input id="selectSavingsGoal" type="radio" name="selectEntry" checked={stateSelectedEntry === "SavingsGoal"} value="SavingsGoal" onChange={handleEntrySelection} />
+                <input id="selectSavingsGoal" type="radio" name="selectEntry" checked={stateSelectedEntry === "savingGoal"} value="savingGoal" onChange={handleEntrySelection} />
                 <button type="submit">Click to fill the form</button>
             </form>
         );
@@ -52,17 +50,16 @@ const AddEntryForm = ({ listOfClassifications, postEntry, entryToAdd, setEntryTo
                 return <ExpenseForm listOfExpenseCategories={listOfClassifications.expenseCategories} postEntry={postEntry} />;
             case "budget":
                 return <BudgetForm listOfExpenseCategories={listOfClassifications.expenseCategories} postEntry={postEntry} />;
-            case "actualSavings":
+            case "actualSaving":
                 return <ActualSavingForm listOfSavingCategories={listOfClassifications.savingCategories} postEntry={postEntry} />;
-            case "actualSavings":
+            case "savingGoal":
                 return <SavingGoalForm listOfSavingCategories={listOfClassifications.savingCategories} postEntry={postEntry} />;
         }
     };
 
     return (
         <main>
-            {classificationsCheck}
-            {entryToAdd ? generateForms() : handleEntrySelectionForm()}
+            {!listOfClassifications ? classificationsCheck() : (entryToAdd ? generateForms() : handleEntrySelectionForm())}
         </main>
     );
 }

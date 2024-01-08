@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const LandingPage = () => {
+const LandingPage = ({setEntryToAdd}) => {
 
     const navigate = useNavigate();
 
@@ -10,6 +10,10 @@ const LandingPage = () => {
     const handleDropdownClick = ()=>{
         setIsOpen(!isOpen);
     };
+
+    const handleSetEntryToAdd = (entry)=>{
+        setEntryToAdd(entry);
+    }; 
 
     return ( 
         <main>
@@ -21,11 +25,11 @@ const LandingPage = () => {
                     <button onClick={handleDropdownClick}>Add Entry</button>
                     <div className={isOpen ? "dropdown-menu-show" : "dropdown-menu"}>
                         <ul>
-                            <li><Link to="/add-entry">Income</Link></li>
-                            <li><Link to="/add-entry">Expense</Link></li>
-                            <li><Link to="/add-entry">Budget</Link></li>
-                            <li><Link to="/add-entry">Actual Savings</Link></li>
-                            <li><Link to="/add-entry">Savings Goals</Link></li>
+                            <li><Link to="/add-entry" onClick={()=>{handleSetEntryToAdd("income")}}>Income</Link></li>
+                            <li><Link to="/add-entry" onClick={()=>{handleSetEntryToAdd("expense")}}>Expense</Link></li>
+                            <li><Link to="/add-entry" onClick={()=>{handleSetEntryToAdd("budget")}}>Budget</Link></li>
+                            <li><Link to="/add-entry" onClick={()=>{handleSetEntryToAdd("actualSaving")}}>Actual Savings</Link></li>
+                            <li><Link to="/add-entry" onClick={()=>{handleSetEntryToAdd("savingGoal")}}>Savings Goals</Link></li>
                         </ul>
                     </div>
                 </div>

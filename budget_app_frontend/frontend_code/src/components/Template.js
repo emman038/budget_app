@@ -1,13 +1,36 @@
+import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 
-const Template = () => {
+const Template = ({setEntryToAdd}) => {
+
+    const [isOpen, setIsOpen] = useState(false);
+
+    const handleDropdownClick = ()=>{
+        setIsOpen(!isOpen);
+    };
+
+    const handleSetEntryToAdd = (entry)=>{
+        setEntryToAdd(entry);
+    }; 
+
     return (
         <>
             <nav>
                 <ul>
                     <li><Link to="/">Home</Link></li>
                     <li><Link to="/select-time-frame">View Dashboard</Link></li>
-                    <li><Link to="/add-entry">Add an entry</Link></li>
+                    <div className="dropdown-button">
+                        <button onClick={handleDropdownClick}>Add Entry</button>
+                        <div className={isOpen ? "dropdown-menu-show" : "dropdown-menu"}>
+                            <ul>
+                                <li><Link to="/add-entry" onClick={()=>{handleSetEntryToAdd("income")}}>Income</Link></li>
+                                <li><Link to="/add-entry" onClick={()=>{handleSetEntryToAdd("expense")}}>Expense</Link></li>
+                                <li><Link to="/add-entry" onClick={()=>{handleSetEntryToAdd("budget")}}>Budget</Link></li>
+                                <li><Link to="/add-entry" onClick={()=>{handleSetEntryToAdd("actualSaving")}}>Actual Savings</Link></li>
+                                <li><Link to="/add-entry" onClick={()=>{handleSetEntryToAdd("savingGoal")}}>Savings Goals</Link></li>
+                            </ul>
+                        </div>
+                    </div>
                     <li><Link to="/select-entry">Edit an Existing Entry</Link></li>
                 </ul>
             </nav>
@@ -17,5 +40,5 @@ const Template = () => {
         </>
     );
 }
- 
+
 export default Template

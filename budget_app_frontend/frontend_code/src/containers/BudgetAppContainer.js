@@ -52,19 +52,19 @@ const BudgetAppContainer = () => {
     const budgetAppRoutes = createBrowserRouter([
         {
             path: "/",
-            element: <Template />,
+            element: <Template setEntryToAdd={setEntryToAdd}/>,
             children: [
             {
                 path: "/",
-                element: <LandingPage/>
+                element: <LandingPage setEntryToAdd={setEntryToAdd}/>
             },
             {
                 path: "/select-time-frame",
-                element: <TimeFrame/>
+                element: <TimeFrame />
             },
             {
                 path: "/dashboard",
-                element: <Dashboard/>
+                element: <Dashboard />
             },
             {
                 path: "/add-entry",
