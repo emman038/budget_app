@@ -1,5 +1,6 @@
 package com.Budget.Application.Budget.Application.controllers.entriesControllers;
 
+import com.Budget.Application.Budget.Application.models.dtos.SavingsDTO;
 import com.Budget.Application.Budget.Application.models.entries.SavingGoal;
 import com.Budget.Application.Budget.Application.services.entriesServices.SavingGoalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,11 @@ public class SavingGoalController {
     }
 
     @PostMapping
+    public ResponseEntity<SavingGoal> addSavingGoal(@RequestBody SavingsDTO savingGoalDTO){
+        return new ResponseEntity<>(savingGoalService.addSavingGoalForController(savingGoalDTO), HttpStatus.CREATED);
+    };
+
+    @PatchMapping
     public ResponseEntity<SavingGoal> modifySavingGoal(SavingGoal savingGoal){
         Optional<SavingGoal> optionalSavingGoal = savingGoalService.getSavingGoalById(savingGoal.getId());
 
