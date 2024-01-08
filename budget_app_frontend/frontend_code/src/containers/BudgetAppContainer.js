@@ -57,7 +57,7 @@ const BudgetAppContainer = () => {
             children: [
             {
                 path: "/",
-                element: <LandingPage setEntryToAdd={setEntryToAdd}/>
+                element: <LandingPage setEntryToAdd={setEntryToAdd} setCheckForMoreDetails={setCheckForMoreDetails}/>
             },
             {
                 path: "/select-time-frame",

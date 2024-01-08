@@ -1,7 +1,21 @@
-const YearEntry = () => {
+const YearEntry = ({listOfEntries, setCheckForMoreDetails}) => {
+    
+    const handleClick = (entry) => {
+        setCheckForMoreDetails(entry);
+    };
+
+    const generateYearsElements = () => {
+        return listOfEntries.map((entry) => {
+            return <button key={entry.year} onClick={() => { handleClick(entry) }}>{entry.year}</button>
+        });
+    };
+
     return (
-        <p>YearEntry</p>
-     );
-}
+            <>
+                <h2>Years</h2>
+                {generateYearsElements()}
+            </>
+    );
+};
  
 export default YearEntry;

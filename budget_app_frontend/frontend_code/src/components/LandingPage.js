@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const LandingPage = ({setEntryToAdd}) => {
+const LandingPage = ({setEntryToAdd, setCheckForMoreDetails}) => {
 
     const navigate = useNavigate();
 
@@ -14,6 +14,11 @@ const LandingPage = ({setEntryToAdd}) => {
     const handleSetEntryToAdd = (entry)=>{
         setEntryToAdd(entry);
     }; 
+
+    const handleClickForExistingEntries = ()=>{
+        setCheckForMoreDetails(null);
+        navigate("/select-entry")
+    };
 
     return ( 
         <main>
@@ -33,7 +38,7 @@ const LandingPage = ({setEntryToAdd}) => {
                         </ul>
                     </div>
                 </div>
-                <button onClick={()=>{navigate("/select-entry")}}>View/Edit/Delete Existing Entries</button>
+                <button onClick={()=>{handleClickForExistingEntries()}}>View/Edit/Delete Existing Entries</button>
             </section>
         </main>
      );
