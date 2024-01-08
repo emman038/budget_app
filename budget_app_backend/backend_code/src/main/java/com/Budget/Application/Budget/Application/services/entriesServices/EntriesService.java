@@ -6,9 +6,7 @@ import com.Budget.Application.Budget.Application.models.entries.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -40,6 +38,10 @@ public class EntriesService {
             EntriesByYearDTO entriesByYearDTO = new EntriesByYearDTO(year, entriesByMonthDTOList);
             entriesByYearDTOList.add(entriesByYearDTO);
         }
+
+        Comparator<EntriesByYearDTO> compareByYear  = (EntriesByYearDTO o1, EntriesByYearDTO o2) -> o1.getYear().compareTo(o2.getYear());
+        Collections.sort(entriesByYearDTOList, compareByYear);
+
         return entriesByYearDTOList;
     }
 
