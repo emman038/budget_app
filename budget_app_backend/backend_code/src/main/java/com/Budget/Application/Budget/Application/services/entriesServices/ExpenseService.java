@@ -48,12 +48,7 @@ public class ExpenseService {
         expenseToAdd.setDescription(expenseDTO.getDescription());
         expenseToAdd.setEntryType(expenseDTO.getEntryType());
 
-        String dateTimeString = expenseDTO.getTimeOfCreation();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
-
-        LocalDateTime localDateTime = LocalDateTime.parse(dateTimeString, formatter);
-
-        expenseToAdd.setTimeOfCreation(localDateTime);
+        expenseToAdd.setTimeOfCreation(LocalDateTime.now());
 
         expenseRepository.save(expenseToAdd);
         Expense addedExpense = expenseRepository.findById(expenseToAdd.getId()).get();

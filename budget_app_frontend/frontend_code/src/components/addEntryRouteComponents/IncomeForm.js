@@ -8,46 +8,32 @@ const IncomeForm = ({ listOfIncomeSources, postEntry }) => {
     const [stateIncome, setSateIncome] = useState(
         {
             entryType: "INCOME",
-            timeOfCreation: null,
-            description: null,
+            description: "",
             incomeSourceId: null,
-            preTaxAmount: 0,
-            postTaxAmount: 0
+            preTaxAmount: "",
+            postTaxAmount: ""
         }
     );
-
-    const [stateSelectedTimeOfCreation, setStateSelectedTimeOfCreation] = useState("currentTime");
-
-    const handleTimeOfCreationSelection = (event) => {
-        setStateSelectedTimeOfCreation(event.target.value)
-    };
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
 
-        let copiedIncome = { ...stateIncome };
-
-        let timePropertyName = "timeOfCreation";
-
-        if (stateSelectedTimeOfCreation=== "currentTime"){
-            copiedIncome[timePropertyName] = new Date().toISOString().slice(0, 19);
-        } else {
-            copiedIncome[timePropertyName] = event.target.elements.namedItem("past-date-time-input").value + ":00";
-        };
-
-        setSateIncome(copiedIncome);
+        console.log(stateIncome);
 
         postEntry(stateIncome, "incomes");
 
         setSateIncome(
             {
                 entryType: "INCOME",
-                timeOfCreation: null,
-                description: null,
-                incomeSourceId: null,
-                preTaxAmount: 0,
-                postTaxAmount: 0
+                description: "",
+                incomeSourceId: "",
+                preTaxAmount: "",
+                postTaxAmount: ""
             })
+
+        alert("Income was successfully added.");
+
+        navigate("/");
     };
 
     const handleChange = (event) => {
@@ -75,12 +61,12 @@ const IncomeForm = ({ listOfIncomeSources, postEntry }) => {
             </select>
 
             <label htmlFor="descriptionInputBox">Write a description of the Income Entry </label>
-            <textarea onChange={handleChange} name="description" type="text" maxLength={255} id="descriptionInputBox" autoComplete="on" placeholder="Enter a brief description of anything to note about this entry" />
+            <textarea value={stateIncome.description} onChange={handleChange} name="description" type="text" maxLength={255} id="descriptionInputBox" autoComplete="on" placeholder="Enter a brief description of anything to note about this entry" />
             
             <label htmlFor="preTaxInput">Enter the Pre-tax Income *</label>
-            <input required onChange={handleChange} name="preTaxAmount" type="number" id="preTaxInput" placeholder="Write the Pre-tax amount here" autoComplete="on" />
+            <input value={stateIncome.preTaxAmount} required onChange={handleChange} name="preTaxAmount" type="number" id="preTaxInput" placeholder="Write the Pre-tax amount here" autoComplete="on" />
             <label htmlFor="postTaxInput">Enter the Post-tax Income *</label>
-            <input required onChange={handleChange} name="postTaxAmount" type="number" id="postTaxInput" placeholder="Write the Post-tax amount here" autoComplete="on" />
+            <input value={stateIncome.postTaxAmount} required onChange={handleChange} name="postTaxAmount" type="number" id="postTaxInput" placeholder="Write the Post-tax amount here" autoComplete="on" />
 
             <button type="submit">Add the Entry</button>
         </form>
