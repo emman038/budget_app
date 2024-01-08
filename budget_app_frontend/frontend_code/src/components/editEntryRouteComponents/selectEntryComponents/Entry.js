@@ -1,4 +1,9 @@
-const Entry = ({checkForMoreDetails, setEntryToEdit}) => {
+import { useNavigate } from "react-router-dom";
+
+const Entry = ({ checkForMoreDetails, setEntryToEdit }) => {
+
+    const navigate = useNavigate();
+
     const months = { 1: "January", 2: "February", 3: "March", 4: "April", 5: "May", 6: "June", 7: "July", 8: "August", 9: "September", 10: "October", 11: "November", 12: "December" }
 
     const generateEntryTypeWord = (entryType) => {
@@ -10,14 +15,24 @@ const Entry = ({checkForMoreDetails, setEntryToEdit}) => {
         return `${sections[2]}/${sections[1]}/${sections[0]}`;
     };
 
-    const handleEntrySelection = (entry)=>{
+    const handleEntrySelection = (entry) => {
         setEntryToEdit(entry);
+        navigate("/edit-entry");
     };
 
-    const generateEntriesByMonth = (listOfEntries) => {
+    const generateMonths = (listOfEntries) => {
         return listOfEntries.map((entry) => {
-            return <button key={entry.id} onClick={()=>{handleEntrySelection(entry)}}>{generateEntryTypeWord(entry.entryType)} - {formatTimeOfCreation(entry.timeOfCreation)}</button>
+            return <button key={entry.id} onClick={() => { handleEntrySelection(entry) }}>{generateEntryTypeWord(entry.entryType)} - {formatTimeOfCreation(entry.timeOfCreation)}</button>
         });
+    };
+
+    const generateEntriesByMonth = (listOfEntries, entry) => {
+        return (
+            <>
+                <h4>{entry}</h4>
+                {generateMonths(listOfEntries)}
+            </>
+        );
     };
 
     const generateMoreDetailsElements = () => {
@@ -25,11 +40,11 @@ const Entry = ({checkForMoreDetails, setEntryToEdit}) => {
             return (
                 <div key={month.month}>
                     <h3>{months[month.month]}</h3>
-                    {(month.incomes.length > 0) ? generateEntriesByMonth(month.incomes) : null}
-                    {(month.expenses.length > 0) ? generateEntriesByMonth(month.expenses) : null}
-                    {(month.budgets.length > 0) ? generateEntriesByMonth(month.budgets) : null}
-                    {(month.actualSavings.length > 0) ? generateEntriesByMonth(month.actualSavings) : null}
-                    {(month.savingGoals.length > 0) ? generateEntriesByMonth(month.savingGoals) : null}
+                    {(month.incomes.length > 0) ? generateEntriesByMonth(month.incomes, "Income(s) for this month:") : null}
+                    {(month.expenses.length > 0) ? generateEntriesByMonth(month.expenses, "Expense(s) for this month:") : null}
+                    {(month.budgets.length > 0) ? generateEntriesByMonth(month.budgets, "Budget(s) for this month:") : null}
+                    {(month.actualSavings.length > 0) ? generateEntriesByMonth(month.actualSavings, "Actual Saving(s) for this month:") : null}
+                    {(month.savingGoals.length > 0) ? generateEntriesByMonth(month.savingGoals, "Saving Goal(s) for this month:") : null}
                 </div>
             )
         });
