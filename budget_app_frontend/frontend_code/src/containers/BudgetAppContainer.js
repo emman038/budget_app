@@ -16,6 +16,7 @@ const BudgetAppContainer = () => {
     const [dashboardEntries, setDashboardEntries] = useState(null);
     const [entryToEdit, setEntryToEdit] = useState(null);
     const [entryToAdd, setEntryToAdd] = useState(null);
+    const [checkForMoreDetails, setCheckForMoreDetails] = useState(null);
 
     // Classifications are the sources and categories for the entries
     const [listOfClassifications, setListOfClassifications] = useState(null);
@@ -52,7 +53,7 @@ const BudgetAppContainer = () => {
     const budgetAppRoutes = createBrowserRouter([
         {
             path: "/",
-            element: <Template setEntryToAdd={setEntryToAdd}/>,
+            element: <Template setEntryToAdd={setEntryToAdd} setCheckForMoreDetails={setCheckForMoreDetails}/>,
             children: [
             {
                 path: "/",
@@ -72,7 +73,7 @@ const BudgetAppContainer = () => {
             },
             {
                 path: "/select-entry",
-                element: <SelectEntry listOfEntries={listOfEntries} entryToEdit={entryToEdit}/>
+                element: <SelectEntry listOfEntries={listOfEntries} entryToEdit={entryToEdit} checkForMoreDetails={checkForMoreDetails} setCheckForMoreDetails={setCheckForMoreDetails}/>
             },
             {
                 path: "/edit-entry",

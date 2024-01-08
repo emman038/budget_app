@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 
-const Template = ({setEntryToAdd}) => {
+const Template = ({setEntryToAdd, setCheckForMoreDetails}) => {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -12,6 +12,10 @@ const Template = ({setEntryToAdd}) => {
     const handleSetEntryToAdd = (entry)=>{
         setEntryToAdd(entry);
     }; 
+
+    const handleSetCheckForMoreDetails = ()=>{
+        setCheckForMoreDetails(null);
+    };
 
     return (
         <>
@@ -31,7 +35,7 @@ const Template = ({setEntryToAdd}) => {
                             </ul>
                         </div>
                     </div>
-                    <li><Link to="/select-entry">Edit an Existing Entry</Link></li>
+                    <li><Link to="/select-entry" onClick={()=>{handleSetCheckForMoreDetails()}}>Edit an Existing Entry</Link></li>
                 </ul>
             </nav>
             <h1>Title</h1>
