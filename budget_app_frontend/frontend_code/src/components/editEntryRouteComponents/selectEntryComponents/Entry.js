@@ -1,4 +1,4 @@
-const Entry = ({checkForMoreDetails}) => {
+const Entry = ({checkForMoreDetails, setEntryToEdit}) => {
     const months = { 1: "January", 2: "February", 3: "March", 4: "April", 5: "May", 6: "June", 7: "July", 8: "August", 9: "September", 10: "October", 11: "November", 12: "December" }
 
     const generateEntryTypeWord = (entryType) => {
@@ -10,9 +10,13 @@ const Entry = ({checkForMoreDetails}) => {
         return `${sections[2]}/${sections[1]}/${sections[0]}`;
     };
 
+    const handleEntrySelection = (entry)=>{
+        setEntryToEdit(entry);
+    };
+
     const generateEntriesByMonth = (listOfEntries) => {
         return listOfEntries.map((entry) => {
-            return <button key={entry.id}>{generateEntryTypeWord(entry.entryType)} - {formatTimeOfCreation(entry.timeOfCreation)}</button>
+            return <button key={entry.id} onClick={()=>{handleEntrySelection(entry)}}>{generateEntryTypeWord(entry.entryType)} - {formatTimeOfCreation(entry.timeOfCreation)}</button>
         });
     };
 
