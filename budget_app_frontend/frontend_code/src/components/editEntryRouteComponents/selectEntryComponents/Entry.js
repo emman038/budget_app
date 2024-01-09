@@ -11,8 +11,10 @@ const Entry = ({ checkForMoreDetails, setEntryToEdit }) => {
     };
 
     const formatTimeOfCreation = (timeOfCreation) => {
-        const sections = timeOfCreation.split("T")[0].split("-");
-        return `${sections[2]}/${sections[1]}/${sections[0]}`;
+        const sections = timeOfCreation.split("T");
+        const dateSections = sections[0].split("-");
+        const timeSections = sections[1].slice(0,5);
+        return `${dateSections[2]}/${dateSections[1]}/${dateSections[0]} at ${timeSections}`;
     };
 
     const handleEntrySelection = (entry) => {
