@@ -17,8 +17,6 @@ const ActualSavingForm = ({listOfSavingCategories, postEntry}) => {
     const handleFormSubmit = (event) => {
         event.preventDefault();
 
-        console.log(stateActualSaving);
-
         postEntry(stateActualSaving, "actual-savings");
 
         setStateActualSaving(

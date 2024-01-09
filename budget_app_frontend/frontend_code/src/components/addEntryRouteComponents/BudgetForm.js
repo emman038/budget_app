@@ -17,8 +17,6 @@ const BudgetForm = ({listOfExpenseCategories, postEntry}) => {
     const handleFormSubmit = (event) => {
         event.preventDefault();
 
-        console.log(stateBudget);
-
         postEntry(stateBudget, "budgets");
 
         setStateBudget(

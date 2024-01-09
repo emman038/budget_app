@@ -18,8 +18,6 @@ const IncomeForm = ({ listOfIncomeSources, postEntry }) => {
     const handleFormSubmit = (event) => {
         event.preventDefault();
 
-        console.log(stateIncome);
-
         postEntry(stateIncome, "incomes");
 
         setSateIncome(

@@ -17,8 +17,6 @@ const SavingGoalForm = ({listOfSavingCategories, postEntry}) => {
     const handleFormSubmit = (event) => {
         event.preventDefault();
 
-        console.log(stateSavingGoal);
-
         postEntry(stateSavingGoal, "saving-goals");
 
         setStateSavingGoal(
