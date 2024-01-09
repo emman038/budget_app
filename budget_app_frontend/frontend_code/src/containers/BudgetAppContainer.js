@@ -12,13 +12,15 @@ import { useEffect, useState } from "react";
 const BudgetAppContainer = () => {
 
     const [listOfEntries, setListOfEntries] = useState(null);
+
     const [currentTimeFrame, setCurrentTimeFrame] = useState(null);
     const [dashboardEntries, setDashboardEntries] = useState(null);
+
     const [entryToEdit, setEntryToEdit] = useState(null);
-    const [entryToAdd, setEntryToAdd] = useState(null);
     const [checkForMoreDetails, setCheckForMoreDetails] = useState(null);
 
-    // Classifications are the sources and categories for the entries
+    const [entryToAdd, setEntryToAdd] = useState(null);
+
     const [listOfClassifications, setListOfClassifications] = useState(null);
 
     const fetchEntries = async ()=>{
