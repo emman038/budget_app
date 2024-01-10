@@ -1,25 +1,27 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const EditIncomeForm = ({entryToEdit, listOfIncomeSources, postEntry}) => {
+const EditIncomeForm = ({ entryToEdit, listOfIncomeSources, postEntry }) => {
     const navigate = useNavigate();
 
-    const [stateIncome, setSateIncome] = useState(
+    const [stateIncome, setStateIncome] = useState(
         {
             entryType: entryToEdit.entryType,
             description: entryToEdit.description,
-            incomeSourceId: entryToEdit.incomeSource,
+            incomeSourceId: entryToEdit.incomeSource.id,
             preTaxAmount: entryToEdit.preTaxAmount,
             postTaxAmount: entryToEdit.postTaxAmount
         }
     );
+
+    const [isEditable, setIsEditable] = useState(false);
 
     const handleFormSubmit = (event) => {
         event.preventDefault();
 
         postEntry(stateIncome, "incomes");
 
-        setSateIncome(
+        setStateIncome(
             {
                 entryType: "INCOME",
                 description: "",
@@ -39,7 +41,7 @@ const EditIncomeForm = ({entryToEdit, listOfIncomeSources, postEntry}) => {
         let copiedIncome = { ...stateIncome };
         copiedIncome[propertyName] = event.target.value;
 
-        setSateIncome(copiedIncome);
+        setStateIncome(copiedIncome);
     };
 
     const generateOptions = () => {
@@ -48,12 +50,44 @@ const EditIncomeForm = ({entryToEdit, listOfIncomeSources, postEntry}) => {
         });
     };
 
-    const generateDefaultValue = ()=>{
-        return entryToEdit.incomeSource;
+    const generateDefaultValue = () => {
+        return entryToEdit.incomeSource.id;
     };
 
-    return (
-        <form id="incomeForm" onSubmit={handleFormSubmit}>
+    const generateDescriptionText = ()=>{
+        return stateIncome.description ? stateIncome.description : "No notes for this entry. Click the edit button to add notes"
+    };
+
+    const toggleEditMode = () => {
+        setIsEditable(!isEditable);
+    };
+
+    const generateDisabledForm = () => {
+        return (
+            <form id="disabledIncomeForm">
+                <h2>Income Entry</h2>
+                <label htmlFor="incomeSourcesSelect">Source of income</label>
+                <select disabled required name="incomeSourceId" id="incomeSourcesSelect" defaultValue={generateDefaultValue()}>
+                    <option key="disabledSelectedIncomeSources" value="" disabled>--Please choose an option--</option>
+                    <option key={entryToEdit.incomeSource.id} value={entryToEdit.incomeSource.id}>{entryToEdit.incomeSource.name}</option>
+                </select>
+
+                <label htmlFor="descriptionInputBox">A brief description of the Income Entry </label>
+                <textarea disabled value={generateDescriptionText()} name="description" type="text" maxLength={255} id="descriptionInputBox" autoComplete="on" />
+
+                <label htmlFor="preTaxInput">Pre-tax Income</label>
+                <input disabled value={stateIncome.preTaxAmount} name="preTaxAmount" type="number" id="preTaxInput" autoComplete="on" />
+                <label htmlFor="postTaxInput">Post-tax Income</label>
+                <input disabled value={stateIncome.postTaxAmount} name="postTaxAmount" type="number" id="postTaxInput" autoComplete="on" />
+
+                <button onClick={toggleEditMode}>Edit this Entry</button>
+            </form>
+        );
+    };
+
+    const generateEditableForm = () => {
+        return(
+            <section id="incomeForm" onSubmit={handleFormSubmit}>
             <h2>Income Entry</h2>
             <p>(*) Required fields</p>
             <label htmlFor="incomeSourcesSelect">Choose a source of income * </label>
@@ -71,8 +105,15 @@ const EditIncomeForm = ({entryToEdit, listOfIncomeSources, postEntry}) => {
             <input value={stateIncome.postTaxAmount} required onChange={handleChange} name="postTaxAmount" type="number" id="postTaxInput" placeholder="Write the Post-tax amount here" autoComplete="on" />
 
             <button type="submit">Add the Entry</button>
-        </form>
+        </section>
+        );
+    };
+
+    return (
+        <>
+        {isEditable ? generateEditableForm() : generateDisabledForm()}
+        </>
     );
 }
- 
+
 export default EditIncomeForm;
