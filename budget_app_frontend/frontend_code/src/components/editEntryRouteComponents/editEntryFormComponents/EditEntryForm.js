@@ -4,17 +4,38 @@ import EditExpenseForm from "./EditExpenseForm";
 import EditIncomeForm from "./EditIncomeForm";
 import EditSavingGoalForm from "./EditSavingGoalForm";
 
-const EditEntryForm = () => {
-    return ( 
-        <>
+const EditEntryForm = ({ entryToEdit }) => {
+
+    const generateForms = () => {
+        switch (entryToEdit.entryType) {
+            case "INCOME":
+                return <EditIncomeForm entryToEdit={entryToEdit} />
+            case "EXPENSE":
+                return <EditExpenseForm entryToEdit={entryToEdit} />
+            case "BUDGET":
+                return <EditBudgetForm entryToEdit={entryToEdit} />
+            case "ACTUAL_SAVING":
+                <EditActualSavingForm entryToEdit={entryToEdit} />
+            case "SAVING_GOAL":
+                <EditSavingGoalForm entryToEdit={entryToEdit} />
+        };
+    };
+
+    const noEntryElements = ()=>{
+        return(
+            <>
+                <p>Please select an Entry you'd like to edit:</p>
+                <button>Select an Entry</button>
+            </>
+        );
+    };
+
+    return (
+        <main>
             <p>EditEntryForm</p>
-            <EditIncomeForm />
-            <EditExpenseForm />
-            <EditBudgetForm />
-            <EditActualSavingForm />
-            <EditSavingGoalForm />
-        </>
-     );
+            {entryToEdit ? generateForms() : noEntryElements()}
+        </ main>
+    );
 }
- 
+
 export default EditEntryForm;

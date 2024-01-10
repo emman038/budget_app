@@ -50,7 +50,7 @@ const AddEntryForm = ({ listOfClassifications, postEntry, entryToAdd, setEntryTo
                 return <ActualSavingForm listOfSavingCategories={listOfClassifications.savingCategories} postEntry={postEntry} />;
             case "savingGoal":
                 return <SavingGoalForm listOfSavingCategories={listOfClassifications.savingCategories} postEntry={postEntry} />;
-        }
+        };
     };
 
     return (
