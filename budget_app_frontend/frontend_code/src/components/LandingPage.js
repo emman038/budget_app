@@ -38,7 +38,7 @@ const LandingPage = ({setEntryToAdd, setCheckForMoreDetails}) => {
                         </ul>
                     </div>
                 </div>
-                <button onClick={()=>{handleClickForExistingEntries()}}>View/Edit/Delete Existing Entries</button>
+                <button onClick={handleClickForExistingEntries}>View/Edit/Delete Existing Entries</button>
             </section>
         </main>
      );

@@ -79,7 +79,7 @@ const BudgetAppContainer = () => {
             },
             {
                 path: "/edit-entry",
-                element: <EditEntryForm entryToEdit={entryToEdit}/>
+                element: <EditEntryForm entryToEdit={entryToEdit} listOfClassifications={listOfClassifications} postEntry={postEntry}/>
             }
         ]
         }

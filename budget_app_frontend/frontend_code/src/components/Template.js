@@ -35,7 +35,7 @@ const Template = ({setEntryToAdd, setCheckForMoreDetails}) => {
                             </ul>
                         </div>
                     </div>
-                    <li><Link to="/select-entry" onClick={()=>{handleSetCheckForMoreDetails()}}>Edit an Existing Entry</Link></li>
+                    <li><Link to="/select-entry" onClick={handleSetCheckForMoreDetails}>Edit an Existing Entry</Link></li>
                 </ul>
             </nav>
             <h1>Title</h1>
