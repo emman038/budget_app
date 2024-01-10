@@ -6,14 +6,14 @@ import EditSavingGoalForm from "./EditSavingGoalForm";
 
 import { useNavigate } from "react-router-dom";
 
-const EditEntryForm = ({ entryToEdit, listOfClassifications, postEntry }) => {
+const EditEntryForm = ({ entryToEdit, listOfClassifications, postEntry, deleteEntry }) => {
 
     const navigate = useNavigate();
 
     const generateForms = () => {
         switch (entryToEdit.entryType) {
             case "INCOME":
-                return <EditIncomeForm entryToEdit={entryToEdit} listOfIncomeSources={listOfClassifications.incomeSources} postEntry={postEntry}/>
+                return <EditIncomeForm entryToEdit={entryToEdit} listOfIncomeSources={listOfClassifications.incomeSources} postEntry={postEntry} deleteEntry={deleteEntry}/>
             case "EXPENSE":
                 return <EditExpenseForm entryToEdit={entryToEdit} />
             case "BUDGET":

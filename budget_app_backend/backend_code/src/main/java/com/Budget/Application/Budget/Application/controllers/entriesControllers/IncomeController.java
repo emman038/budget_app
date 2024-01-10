@@ -41,11 +41,11 @@ public class IncomeController {
     }
 
     @PatchMapping
-    public ResponseEntity<Income> modifyIncome(Income income){
-        Optional<Income> optionalIncome = incomeService.getIncomeById(income.getId());
+    public ResponseEntity<Income> modifyIncome(@RequestBody IncomeDTO incomeDTO){
+        Optional<Income> optionalIncome = incomeService.getIncomeById(incomeDTO.getId());
 
         if (optionalIncome.isPresent()){
-            return new ResponseEntity<>(incomeService.modifyIncome(income), HttpStatus.OK);
+            return new ResponseEntity<>(incomeService.modifyIncome(incomeDTO), HttpStatus.OK);
         }
 
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);

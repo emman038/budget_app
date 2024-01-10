@@ -61,15 +61,17 @@ public class IncomeService {
         return incomeToAdd;
     }
 
-    public Income modifyIncome(Income income) {
-        Income incomeToModify = incomeRepository.findById(income.getId()).get();
+    public Income modifyIncome(IncomeDTO incomeDTO) {
+        Income incomeToModify = incomeRepository.findById(incomeDTO.getId()).get();
+
+        IncomeSource incomeSource = incomeSourceService.getIncomeSourceById(incomeDTO.getIncomeSourceId()).get();
 
         incomeToModify.setNumberOfEdits(incomeToModify.getNumberOfEdits() + 1);
-        incomeToModify.setIncomeSource(income.getIncomeSource());
-        incomeToModify.setPostTaxAmount(income.getPostTaxAmount());
-        incomeToModify.setPreTaxAmount(income.getPreTaxAmount());
-        incomeToModify.setDescription(income.getDescription());
-        incomeToModify.setTimeOfLastEdit(income.getTimeOfLastEdit());
+        incomeToModify.setIncomeSource(incomeSource);
+        incomeToModify.setPostTaxAmount(incomeDTO.getPostTaxAmount());
+        incomeToModify.setPreTaxAmount(incomeDTO.getPreTaxAmount());
+        incomeToModify.setDescription(incomeDTO.getDescription());
+        incomeToModify.setTimeOfLastEdit(LocalDateTime.now());
 
         incomeRepository.save(incomeToModify);
 

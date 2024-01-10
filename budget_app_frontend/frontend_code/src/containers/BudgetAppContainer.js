@@ -46,11 +46,20 @@ const BudgetAppContainer = () => {
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(newEntry)
         })
-        const data = await response.json();
         
         fetchEntries();
         fetchClassifications();
     };
+
+    const deleteEntry = async (entryId, entryType)=>{
+        const response = await fetch(`http://localhost:8080/${entryType}/${entryId}`, {
+            method: "DELETE",
+            headers: {"Content-Type": "application/json"}
+        })
+        
+        fetchEntries();
+        fetchClassifications();
+    }
 
     const budgetAppRoutes = createBrowserRouter([
         {
@@ -79,7 +88,7 @@ const BudgetAppContainer = () => {
             },
             {
                 path: "/edit-entry",
-                element: <EditEntryForm entryToEdit={entryToEdit} listOfClassifications={listOfClassifications} postEntry={postEntry}/>
+                element: <EditEntryForm entryToEdit={entryToEdit} listOfClassifications={listOfClassifications} postEntry={postEntry} deleteEntry={deleteEntry}/>
             }
         ]
         }

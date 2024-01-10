@@ -4,6 +4,8 @@ import com.Budget.Application.Budget.Application.models.EntryType;
 
 public class IncomeDTO {
 
+    private Long id;
+
     private EntryType entryType;
 
     private String description;
@@ -20,6 +22,7 @@ public class IncomeDTO {
         this.incomeSourceId = incomeSourceId;
         this.preTaxAmount = preTaxAmount;
         this.postTaxAmount = postTaxAmount;
+        this.id = null;
     }
 
     public IncomeDTO() {
@@ -63,5 +66,13 @@ public class IncomeDTO {
 
     public void setPostTaxAmount(Integer postTaxAmount) {
         this.postTaxAmount = postTaxAmount;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
