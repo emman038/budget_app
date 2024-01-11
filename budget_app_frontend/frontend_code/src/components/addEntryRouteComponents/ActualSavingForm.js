@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { TfiSave } from "react-icons/tfi";
 
 const ActualSavingForm = ({listOfSavingCategories, postEntry}) => {
 
@@ -63,7 +64,7 @@ const ActualSavingForm = ({listOfSavingCategories, postEntry}) => {
             <label htmlFor="amountInput">Enter the Actual Savings amount *</label>
             <input value={stateActualSaving.amount} required onChange={handleChange} name="amount" type="number" id="amountInput" placeholder="Write the actual savings amount here" autoComplete="on" />
             
-            <button type="submit">Add the Entry</button>
+            <button type="submit"><TfiSave /> Save Entry</button>
         </form>
     );
 }

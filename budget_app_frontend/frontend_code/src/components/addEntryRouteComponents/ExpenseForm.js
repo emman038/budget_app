@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { TfiSave } from "react-icons/tfi";
 
 const ExpenseForm = ({ listOfExpenseCategories, postEntry }) => {
 
@@ -63,7 +64,7 @@ const ExpenseForm = ({ listOfExpenseCategories, postEntry }) => {
             <label htmlFor="amountInput">Enter the Expense amount *</label>
             <input value={stateExpense.amount} required onChange={handleChange} name="amount" type="number" id="amountInput" placeholder="Write the expense amount here" autoComplete="on" />
             
-            <button type="submit">Add the Entry</button>
+            <button type="submit"><TfiSave /> Save Entry</button>
         </form>
     );
 }

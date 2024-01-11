@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { TfiSave } from "react-icons/tfi";
 
 const IncomeForm = ({ listOfIncomeSources, postEntry }) => {
 
@@ -67,7 +68,7 @@ const IncomeForm = ({ listOfIncomeSources, postEntry }) => {
             <label htmlFor="postTaxInput">Enter the Post-tax Income *</label>
             <input value={stateIncome.postTaxAmount} required onChange={handleChange} name="postTaxAmount" type="number" id="postTaxInput" placeholder="Write the Post-tax amount here" autoComplete="on" />
 
-            <button type="submit">Add the Entry</button>
+            <button type="submit"><TfiSave /> Save Entry</button>
         </form>
     );
 }
