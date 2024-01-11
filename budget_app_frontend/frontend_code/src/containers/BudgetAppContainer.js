@@ -23,83 +23,96 @@ const BudgetAppContainer = () => {
 
     const [listOfClassifications, setListOfClassifications] = useState(null);
 
-    const fetchEntries = async ()=>{
+    const fetchEntries = async () => {
         const response = await fetch("http://localhost:8080/entries");
         const data = await response.json();
         setListOfEntries(data);
     };
 
-    const fetchClassifications = async ()=>{
+    const fetchClassifications = async () => {
         const response = await fetch("http://localhost:8080/classifications")
         const data = await response.json();
         setListOfClassifications(data);
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         fetchEntries();
         fetchClassifications();
-    },[]);
+    }, []);
 
-    const postEntry = async (newEntry, entryType)=>{
+    const postEntry = async (newEntry, entryType) => {
         const response = await fetch(`http://localhost:8080/${entryType}`, {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify(newEntry)
         })
-        
+
         fetchEntries();
         fetchClassifications();
     };
 
-    const deleteEntry = async (entryId, entryType)=>{
+    const deleteEntry = async (entryId, entryType) => {
         const response = await fetch(`http://localhost:8080/${entryType}/${entryId}`, {
             method: "DELETE",
-            headers: {"Content-Type": "application/json"}
+            headers: { "Content-Type": "application/json" }
         })
-        
+
         fetchEntries();
         fetchClassifications();
-    }
+    };
+
+    const modifyEntry = async (newEntry, entryType) => {
+        const response = await fetch(`http://localhost:8080/${entryType}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(newEntry)
+        })
+
+        const data = await response.json();
+
+        fetchEntries();
+        fetchClassifications();
+    };
 
     const budgetAppRoutes = createBrowserRouter([
         {
             path: "/",
-            element: <Template setEntryToAdd={setEntryToAdd} setCheckForMoreDetails={setCheckForMoreDetails}/>,
+            element: <Template setEntryToAdd={setEntryToAdd} setCheckForMoreDetails={setCheckForMoreDetails} />,
             children: [
-            {
-                path: "/",
-                element: <LandingPage setEntryToAdd={setEntryToAdd} setCheckForMoreDetails={setCheckForMoreDetails}/>
-            },
-            {
-                path: "/select-time-frame",
-                element: <TimeFrame />
-            },
-            {
-                path: "/dashboard",
-                element: <Dashboard />
-            },
-            {
-                path: "/add-entry",
-                element: <AddEntryForm listOfClassifications={listOfClassifications} postEntry={postEntry} entryToAdd={entryToAdd} setEntryToAdd={setEntryToAdd}/>
-            },
-            {
-                path: "/select-entry",
-                element: <SelectEntry listOfEntries={listOfEntries} setEntryToEdit={setEntryToEdit} checkForMoreDetails={checkForMoreDetails} setCheckForMoreDetails={setCheckForMoreDetails}/>
-            },
-            {
-                path: "/edit-entry",
-                element: <EditEntryForm entryToEdit={entryToEdit} listOfClassifications={listOfClassifications} postEntry={postEntry} deleteEntry={deleteEntry}/>
-            }
-        ]
+                {
+                    path: "/",
+                    element: <LandingPage setEntryToAdd={setEntryToAdd} setCheckForMoreDetails={setCheckForMoreDetails} />
+                },
+                {
+                    path: "/select-time-frame",
+                    element: <TimeFrame />
+                },
+                {
+                    path: "/dashboard",
+                    element: <Dashboard />
+                },
+                {
+                    path: "/add-entry",
+                    element: <AddEntryForm listOfClassifications={listOfClassifications} postEntry={postEntry} entryToAdd={entryToAdd} setEntryToAdd={setEntryToAdd} />
+                },
+                {
+                    path: "/select-entry",
+                    element: <SelectEntry listOfEntries={listOfEntries} setEntryToEdit={setEntryToEdit} checkForMoreDetails={checkForMoreDetails} setCheckForMoreDetails={setCheckForMoreDetails} />
+                },
+                {
+                    path: "/edit-entry",
+                    element: <EditEntryForm entryToEdit={entryToEdit} listOfClassifications={listOfClassifications} postEntry={postEntry} deleteEntry={deleteEntry} modifyEntry={modifyEntry}/>
+                }
+            ]
         }
     ])
 
-    return ( 
+    return (
         <>
             <p>Container</p>
-            <RouterProvider router={budgetAppRoutes} /> 
+            <RouterProvider router={budgetAppRoutes} />
         </>
-     );
+    );
 }
- 
+
 export default BudgetAppContainer;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const EditIncomeForm = ({ entryToEdit, listOfIncomeSources, postEntry, deleteEntry }) => {
+const EditIncomeForm = ({ entryToEdit, listOfIncomeSources, postEntry, deleteEntry, modifyEntry }) => {
     const navigate = useNavigate();
 
     const [stateIncome, setStateIncome] = useState(
@@ -16,26 +16,6 @@ const EditIncomeForm = ({ entryToEdit, listOfIncomeSources, postEntry, deleteEnt
     );
 
     const [isEditable, setIsEditable] = useState(false);
-
-    const handleFormSubmit = (event) => {
-        event.preventDefault();
-
-        postEntry(stateIncome, "incomes");
-
-        setStateIncome(
-            {
-                id: "",
-                entryType: "INCOME",
-                description: "",
-                incomeSourceId: "",
-                preTaxAmount: "",
-                postTaxAmount: ""
-            })
-
-        alert("Income was successfully added.");
-
-        navigate("/");
-    };
 
     const handleChange = (event) => {
         let propertyName = event.target.name;
@@ -56,8 +36,12 @@ const EditIncomeForm = ({ entryToEdit, listOfIncomeSources, postEntry, deleteEnt
         return entryToEdit.incomeSource.id;
     };
 
-    const generateDescriptionText = () => {
-        return stateIncome.description ? stateIncome.description : "There are no notes for this entry. Click the edit button to add some notes."
+    const generateDescriptionTextForDisabled = () => {
+        return stateIncome.description ? stateIncome.description : "There are no notes for this entry. Click the edit button to add some notes.";
+    };
+
+    const generateDescriptionTextFoEditable = ()=>{
+        return stateIncome.description ? stateIncome.description : "";
     };
 
     const toggleEditMode = () => {
@@ -82,6 +66,24 @@ const EditIncomeForm = ({ entryToEdit, listOfIncomeSources, postEntry, deleteEnt
         navigate("/");
     };
 
+    const handleModify = ()=>{
+        modifyEntry(stateIncome, "incomes");
+
+        setStateIncome(
+            {
+                id: "",
+                entryType: "INCOME",
+                description: "",
+                incomeSourceId: "",
+                preTaxAmount: "",
+                postTaxAmount: ""
+            })
+
+        alert("Income was successfully modified.");
+
+        navigate("/");
+    };
+
     const generateDisabledForm = () => {
         return (
             <form id="disabledIncomeForm">
@@ -93,14 +95,14 @@ const EditIncomeForm = ({ entryToEdit, listOfIncomeSources, postEntry, deleteEnt
                 </select>
 
                 <label htmlFor="descriptionInputBox">A brief description of the Income Entry:</label>
-                <textarea disabled value={generateDescriptionText()} name="description" type="text" maxLength={255} id="descriptionInputBox" autoComplete="on" />
+                <textarea disabled value={generateDescriptionTextForDisabled()} name="description" type="text" maxLength={255} id="descriptionInputBox" autoComplete="on" />
 
                 <label htmlFor="preTaxInput">Pre-tax Income:</label>
                 <input disabled value={stateIncome.preTaxAmount} name="preTaxAmount" type="number" id="preTaxInput" autoComplete="on" />
                 <label htmlFor="postTaxInput">Post-tax Income:</label>
                 <input disabled value={stateIncome.postTaxAmount} name="postTaxAmount" type="number" id="postTaxInput" autoComplete="on" />
 
-                <button onClick={toggleEditMode}>Edit this Entry</button>
+                <button onClick={toggleEditMode}>Click to edit</button>
                 <button onClick={handleDelete}>Delete this Entry</button>
             </form>
         );
@@ -108,7 +110,7 @@ const EditIncomeForm = ({ entryToEdit, listOfIncomeSources, postEntry, deleteEnt
 
     const generateEditableForm = () => {
         return (
-            <section id="incomeForm" onSubmit={handleFormSubmit}>
+            <form id="incomeForm">
                 <h2>Income Entry</h2>
                 <p>(*) Required fields</p>
                 <label htmlFor="incomeSourcesSelect">Choose a source of income * </label>
@@ -118,15 +120,16 @@ const EditIncomeForm = ({ entryToEdit, listOfIncomeSources, postEntry, deleteEnt
                 </select>
 
                 <label htmlFor="descriptionInputBox">Write a description of the Income Entry </label>
-                <textarea value={stateIncome.description} onChange={handleChange} name="description" type="text" maxLength={255} id="descriptionInputBox" autoComplete="on" placeholder="Enter a brief description of anything to note about this entry" />
+                <textarea value={generateDescriptionTextFoEditable()} onChange={handleChange} name="description" type="text" maxLength={255} id="descriptionInputBox" autoComplete="on" placeholder="Enter a brief description of anything to note about this entry" />
 
                 <label htmlFor="preTaxInput">Enter the Pre-tax Income *</label>
                 <input value={stateIncome.preTaxAmount} required onChange={handleChange} name="preTaxAmount" type="number" id="preTaxInput" placeholder="Write the Pre-tax amount here" autoComplete="on" />
                 <label htmlFor="postTaxInput">Enter the Post-tax Income *</label>
                 <input value={stateIncome.postTaxAmount} required onChange={handleChange} name="postTaxAmount" type="number" id="postTaxInput" placeholder="Write the Post-tax amount here" autoComplete="on" />
 
-                <button type="submit">Add the Entry</button>
-            </section>
+                <button onClick={handleModify}>Modify this Entry</button>
+                <button onClick={handleDelete}>Delete this Entry</button>
+            </form>
         );
     };
 

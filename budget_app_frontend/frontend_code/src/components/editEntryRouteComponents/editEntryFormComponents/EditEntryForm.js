@@ -6,14 +6,14 @@ import EditSavingGoalForm from "./EditSavingGoalForm";
 
 import { useNavigate } from "react-router-dom";
 
-const EditEntryForm = ({ entryToEdit, listOfClassifications, postEntry, deleteEntry }) => {
+const EditEntryForm = ({ entryToEdit, listOfClassifications, postEntry, deleteEntry, modifyEntry }) => {
 
     const navigate = useNavigate();
 
     const generateForms = () => {
         switch (entryToEdit.entryType) {
             case "INCOME":
-                return <EditIncomeForm entryToEdit={entryToEdit} listOfIncomeSources={listOfClassifications.incomeSources} postEntry={postEntry} deleteEntry={deleteEntry}/>
+                return <EditIncomeForm entryToEdit={entryToEdit} listOfIncomeSources={listOfClassifications.incomeSources} postEntry={postEntry} deleteEntry={deleteEntry} modifyEntry={modifyEntry}/>
             case "EXPENSE":
                 return <EditExpenseForm entryToEdit={entryToEdit} />
             case "BUDGET":
@@ -25,12 +25,12 @@ const EditEntryForm = ({ entryToEdit, listOfClassifications, postEntry, deleteEn
         };
     };
 
-    const handleClick = ()=>{
+    const handleClick = () => {
         navigate("/select-entry")
     };
 
-    const noEntryElements = ()=>{
-        return(
+    const noEntryElements = () => {
+        return (
             <>
                 <p>Please select an Entry you'd like to edit:</p>
                 <button onClick={handleClick}>Select an Entry</button>
