@@ -18,7 +18,7 @@ const Entry = ({ checkForMoreDetails, setEntryToEdit }) => {
     };
 
     const generateLastEdit = (timeOfLastEdit)=>{
-        return timeOfLastEdit ? formatTimeOfCreation(timeOfLastEdit) : null;
+        return timeOfLastEdit ? `Last edited on: ${formatTimeOfCreation(timeOfLastEdit)}` : null;
     };
 
     const handleEntrySelection = (entry) => {
@@ -28,7 +28,7 @@ const Entry = ({ checkForMoreDetails, setEntryToEdit }) => {
 
     const generateMonths = (listOfEntries) => {
         return listOfEntries.map((entry) => {
-            return <button key={entry.id} onClick={() => { handleEntrySelection(entry) }}>{generateEntryTypeWord(entry.entryType)} Created on: {formatTimeOfCreation(entry.timeOfCreation)} Last edited on: {generateLastEdit(entry.timeOfLastEdit)}</button>
+            return <button key={entry.id} onClick={() => { handleEntrySelection(entry) }}>{generateEntryTypeWord(entry.entryType)} Created on: {formatTimeOfCreation(entry.timeOfCreation)} {generateLastEdit(entry.timeOfLastEdit)}</button>
         });
     };
 

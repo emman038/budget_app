@@ -5,7 +5,7 @@ import { ImBin } from "react-icons/im";
 import { RxUpdate } from "react-icons/rx";
 
 
-const EditIncomeForm = ({ entryToEdit, listOfIncomeSources, postEntry, deleteEntry, modifyEntry }) => {
+const EditIncomeForm = ({ entryToEdit, listOfIncomeSources, deleteEntry, modifyEntry }) => {
     const navigate = useNavigate();
 
     const [stateIncome, setStateIncome] = useState(

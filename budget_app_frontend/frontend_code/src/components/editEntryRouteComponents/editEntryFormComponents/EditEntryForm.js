@@ -13,9 +13,9 @@ const EditEntryForm = ({ entryToEdit, listOfClassifications, postEntry, deleteEn
     const generateForms = () => {
         switch (entryToEdit.entryType) {
             case "INCOME":
-                return <EditIncomeForm entryToEdit={entryToEdit} listOfIncomeSources={listOfClassifications.incomeSources} postEntry={postEntry} deleteEntry={deleteEntry} modifyEntry={modifyEntry}/>
+                return <EditIncomeForm entryToEdit={entryToEdit} listOfIncomeSources={listOfClassifications.incomeSources} deleteEntry={deleteEntry} modifyEntry={modifyEntry}/>
             case "EXPENSE":
-                return <EditExpenseForm entryToEdit={entryToEdit} />
+                return <EditExpenseForm entryToEdit={entryToEdit} listOfExpenseCategories={listOfClassifications.expenseCategories} deleteEntry={deleteEntry} modifyEntry={modifyEntry} />
             case "BUDGET":
                 return <EditBudgetForm entryToEdit={entryToEdit} />
             case "ACTUAL_SAVING":
