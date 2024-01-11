@@ -41,11 +41,11 @@ public class ExpenseController {
     }
 
     @PatchMapping
-    public ResponseEntity<Expense> modifyExpense(@RequestBody Expense expense){
-        Optional<Expense> optionalExpense = expenseService.getExpenseById(expense.getId());
+    public ResponseEntity<Expense> modifyExpense(@RequestBody BudgetExpenseDTO expenseDTO){
+        Optional<Expense> optionalExpense = expenseService.getExpenseById(expenseDTO.getId());
 
         if (optionalExpense.isPresent()){
-            return new ResponseEntity<>(expenseService.modifyExpense(expense), HttpStatus.OK);
+            return new ResponseEntity<>(expenseService.modifyExpense(expenseDTO), HttpStatus.OK);
         }
 
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);

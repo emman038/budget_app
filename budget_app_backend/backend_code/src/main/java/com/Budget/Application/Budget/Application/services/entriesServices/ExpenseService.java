@@ -59,14 +59,16 @@ public class ExpenseService {
         return expenseToAdd;
     }
 
-    public Expense modifyExpense(Expense expense) {
-        Expense expenseToModify = expenseRepository.findById(expense.getId()).get();
+    public Expense modifyExpense(BudgetExpenseDTO expenseDTO) {
+        Expense expenseToModify = expenseRepository.findById(expenseDTO.getId()).get();
+
+        ExpenseCategory expenseCategory = expenseCategoryService.getExpenseCategoryById(expenseDTO.getExpenseCategoryId()).get();
 
         expenseToModify.setNumberOfEdits(expenseToModify.getNumberOfEdits() + 1);
-        expenseToModify.setExpenseCategory(expense.getExpenseCategory());
-        expenseToModify.setAmount(expense.getAmount());
-        expenseToModify.setDescription(expense.getDescription());
-        expenseToModify.setTimeOfLastEdit(expense.getTimeOfLastEdit());
+        expenseToModify.setExpenseCategory(expenseCategory);
+        expenseToModify.setAmount(expenseDTO.getAmount());
+        expenseToModify.setDescription(expenseDTO.getDescription());
+        expenseToModify.setTimeOfLastEdit(LocalDateTime.now());
 
         expenseRepository.save(expenseToModify);
 
