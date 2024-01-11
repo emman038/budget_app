@@ -17,6 +17,10 @@ const Entry = ({ checkForMoreDetails, setEntryToEdit }) => {
         return `${dateSections[2]}/${dateSections[1]}/${dateSections[0]} at ${timeSections}`;
     };
 
+    const generateLastEdit = (timeOfLastEdit)=>{
+        return timeOfLastEdit ? formatTimeOfCreation(timeOfLastEdit) : null;
+    };
+
     const handleEntrySelection = (entry) => {
         setEntryToEdit(entry);
         navigate("/edit-entry");
@@ -24,7 +28,7 @@ const Entry = ({ checkForMoreDetails, setEntryToEdit }) => {
 
     const generateMonths = (listOfEntries) => {
         return listOfEntries.map((entry) => {
-            return <button key={entry.id} onClick={() => { handleEntrySelection(entry) }}>{generateEntryTypeWord(entry.entryType)} - {formatTimeOfCreation(entry.timeOfCreation)}</button>
+            return <button key={entry.id} onClick={() => { handleEntrySelection(entry) }}>{generateEntryTypeWord(entry.entryType)} Created on: {formatTimeOfCreation(entry.timeOfCreation)} Last edited on: {generateLastEdit(entry.timeOfLastEdit)}</button>
         });
     };
 
