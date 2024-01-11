@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e55c6d36-2bca-460e-9ed3-6567c9b2ef7e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../budget_app_frontend/frontend_code/src/containers/BudgetAppContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../budget_app_frontend/frontend_code/src/containers/BudgetAppContainer.js" afterDir="false" />
-    </list>
+    <list default="true" id="e55c6d36-2bca-460e-9ed3-6567c9b2ef7e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

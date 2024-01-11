@@ -1,5 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaPencilAlt } from "react-icons/fa";
+import { ImBin } from "react-icons/im";
+import { RxUpdate } from "react-icons/rx";
+
 
 const EditIncomeForm = ({ entryToEdit, listOfIncomeSources, postEntry, deleteEntry, modifyEntry }) => {
     const navigate = useNavigate();
@@ -40,7 +44,7 @@ const EditIncomeForm = ({ entryToEdit, listOfIncomeSources, postEntry, deleteEnt
         return stateIncome.description ? stateIncome.description : "There are no notes for this entry. Click the edit button to add some notes.";
     };
 
-    const generateDescriptionTextFoEditable = ()=>{
+    const generateDescriptionTextFoEditable = () => {
         return stateIncome.description ? stateIncome.description : "";
     };
 
@@ -66,7 +70,7 @@ const EditIncomeForm = ({ entryToEdit, listOfIncomeSources, postEntry, deleteEnt
         navigate("/");
     };
 
-    const handleModify = ()=>{
+    const handleModify = () => {
         modifyEntry(stateIncome, "incomes");
 
         setStateIncome(
@@ -88,6 +92,8 @@ const EditIncomeForm = ({ entryToEdit, listOfIncomeSources, postEntry, deleteEnt
         return (
             <form id="disabledIncomeForm">
                 <h2>Income Entry</h2>
+                <button onClick={toggleEditMode}><FaPencilAlt /> Edit this Entry</button>
+                <button onClick={handleDelete}><ImBin /> Delete this Entry</button>
                 <label htmlFor="incomeSourcesSelect">Source of income:</label>
                 <select disabled required name="incomeSourceId" id="incomeSourcesSelect" defaultValue={generateDefaultValue()}>
                     <option key="disabledSelectedIncomeSources" value="" disabled>--Please choose an option--</option>
@@ -101,9 +107,6 @@ const EditIncomeForm = ({ entryToEdit, listOfIncomeSources, postEntry, deleteEnt
                 <input disabled value={stateIncome.preTaxAmount} name="preTaxAmount" type="number" id="preTaxInput" autoComplete="on" />
                 <label htmlFor="postTaxInput">Post-tax Income:</label>
                 <input disabled value={stateIncome.postTaxAmount} name="postTaxAmount" type="number" id="postTaxInput" autoComplete="on" />
-
-                <button onClick={toggleEditMode}>Click to edit</button>
-                <button onClick={handleDelete}>Delete this Entry</button>
             </form>
         );
     };
@@ -127,8 +130,8 @@ const EditIncomeForm = ({ entryToEdit, listOfIncomeSources, postEntry, deleteEnt
                 <label htmlFor="postTaxInput">Enter the Post-tax Income *</label>
                 <input value={stateIncome.postTaxAmount} required onChange={handleChange} name="postTaxAmount" type="number" id="postTaxInput" placeholder="Write the Post-tax amount here" autoComplete="on" />
 
-                <button onClick={handleModify}>Modify this Entry</button>
-                <button onClick={handleDelete}>Delete this Entry</button>
+                <button onClick={handleModify}><RxUpdate /> Update this Entry</button>
+                <button onClick={handleDelete}><ImBin /> Delete this Entry</button>
             </form>
         );
     };
