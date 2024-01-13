@@ -90,7 +90,7 @@ const EditExpenseForm = ({ entryToEdit, listOfExpenseCategories, deleteEntry, mo
                 <h2>Expense Entry</h2>
                 <button onClick={toggleEditMode}><FaPencilAlt /> Edit this Entry</button>
                 <button onClick={handleDelete}><ImBin /> Delete this Entry</button>
-                <label htmlFor="expenseCategoriesSelect">Category fo the Expense:</label>
+                <label htmlFor="expenseCategoriesSelect">Category of the Expense:</label>
                 <select disabled required name="expenseCategoryId" id="expenseCategoriesSelect" defaultValue={generateDefaultValue()}>
                     <option key="disabledSelectedExpenseCategories" value="" disabled>--Please choose an option--</option>
                     <option key={entryToEdit.expenseCategory.id} value={entryToEdit.expenseCategory.id}>{entryToEdit.expenseCategory.name}</option>
@@ -99,7 +99,7 @@ const EditExpenseForm = ({ entryToEdit, listOfExpenseCategories, deleteEntry, mo
                 <label htmlFor="descriptionInputBox">A brief description of the Expense Entry:</label>
                 <textarea disabled value={generateDescriptionTextForDisabled()} name="description" type="text" maxLength={255} id="descriptionInputBox" autoComplete="on" />
 
-                <label htmlFor="amountInput">Pre-tax Income:</label>
+                <label htmlFor="amountInput">Amount:</label>
                 <input disabled value={stateExpense.amount} name="amount" type="number" id="amountInput" autoComplete="on" />
             </form>
         );
@@ -107,7 +107,7 @@ const EditExpenseForm = ({ entryToEdit, listOfExpenseCategories, deleteEntry, mo
 
     const generateEditableForm = () => {
         return (
-            <form id="incomeForm">
+            <form id="expenseForm">
                 <h2>Expense Entry</h2>
                 <p>(*) Required fields</p>
                 <label htmlFor="expenseCategoriesSelect">Choose an Expense Category * </label>
