@@ -59,14 +59,16 @@ public class BudgetService {
         return budgetToAdd;
     }
 
-    public Budget modifyBudget(Budget budget) {
-        Budget budgetToModify = budgetRepository.findById(budget.getId()).get();
+    public Budget modifyBudget(BudgetExpenseDTO budgetDTO) {
+        Budget budgetToModify = budgetRepository.findById(budgetDTO.getId()).get();
+
+        ExpenseCategory expenseCategory = expenseCategoryService.getExpenseCategoryById(budgetDTO.getExpenseCategoryId()).get();
 
         budgetToModify.setNumberOfEdits(budgetToModify.getNumberOfEdits() + 1);
-        budgetToModify.setExpenseCategory(budget.getExpenseCategory());
-        budgetToModify.setAmount(budget.getAmount());
-        budgetToModify.setDescription(budget.getDescription());
-        budgetToModify.setTimeOfLastEdit(budget.getTimeOfLastEdit());
+        budgetToModify.setExpenseCategory(expenseCategory);
+        budgetToModify.setAmount(budgetDTO.getAmount());
+        budgetToModify.setDescription(budgetDTO.getDescription());
+        budgetToModify.setTimeOfLastEdit(LocalDateTime.now());
 
         budgetRepository.save(budgetToModify);
 

@@ -41,11 +41,11 @@ public class BudgetController {
     }
 
     @PatchMapping
-    public ResponseEntity<Budget> modifyBudget(Budget budget){
-        Optional<Budget> optionalBudget = budgetService.getBudgetById(budget.getId());
+    public ResponseEntity<Budget> modifyBudget(@RequestBody BudgetExpenseDTO budgetDTO){
+        Optional<Budget> optionalBudget = budgetService.getBudgetById(budgetDTO.getId());
 
         if (optionalBudget.isPresent()){
-            return new ResponseEntity<>(budgetService.modifyBudget(budget), HttpStatus.OK);
+            return new ResponseEntity<>(budgetService.modifyBudget(budgetDTO), HttpStatus.OK);
         }
 
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
