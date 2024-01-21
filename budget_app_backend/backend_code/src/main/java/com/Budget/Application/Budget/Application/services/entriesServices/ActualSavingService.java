@@ -62,14 +62,16 @@ public class ActualSavingService {
         return actualSavingRepository.findById(id);
     }
 
-    public ActualSaving modifyActualSaving(ActualSaving actualSaving) {
-        ActualSaving actualSavingToModify = actualSavingRepository.findById(actualSaving.getId()).get();
+    public ActualSaving modifyActualSaving(SavingsDTO actualSavingDTO) {
+        ActualSaving actualSavingToModify = actualSavingRepository.findById(actualSavingDTO.getId()).get();
+
+        SavingCategory savingCategory = savingCategoryService.getSavingCategoryById(actualSavingDTO.getSavingCategoryId()).get();
 
         actualSavingToModify.setNumberOfEdits(actualSavingToModify.getNumberOfEdits() + 1);
-        actualSavingToModify.setSavingCategory(actualSaving.getSavingCategory());
-        actualSavingToModify.setAmount(actualSaving.getAmount());
-        actualSavingToModify.setDescription(actualSaving.getDescription());
-        actualSavingToModify.setTimeOfLastEdit(actualSaving.getTimeOfLastEdit());
+        actualSavingToModify.setSavingCategory(savingCategory);
+        actualSavingToModify.setAmount(actualSavingDTO.getAmount());
+        actualSavingToModify.setDescription(actualSavingDTO.getDescription());
+        actualSavingToModify.setTimeOfLastEdit(LocalDateTime.now());
 
         actualSavingRepository.save(actualSavingToModify);
 

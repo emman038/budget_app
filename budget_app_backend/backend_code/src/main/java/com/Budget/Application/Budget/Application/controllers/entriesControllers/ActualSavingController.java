@@ -41,11 +41,11 @@ public class ActualSavingController {
     }
 
     @PatchMapping
-    public ResponseEntity<ActualSaving> modifyActualSaving(ActualSaving actualSaving){
-        Optional<ActualSaving> optionalActualSaving = actualSavingService.getActualSavingById(actualSaving.getId());
+    public ResponseEntity<ActualSaving> modifyActualSaving(@RequestBody SavingsDTO actualSavingDTO){
+        Optional<ActualSaving> optionalActualSaving = actualSavingService.getActualSavingById(actualSavingDTO.getId());
 
         if (optionalActualSaving.isPresent()){
-            return new ResponseEntity<>(actualSavingService.modifyActualSaving(actualSaving), HttpStatus.OK);
+            return new ResponseEntity<>(actualSavingService.modifyActualSaving(actualSavingDTO), HttpStatus.OK);
         }
 
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);

@@ -60,14 +60,16 @@ public class SavingGoalService {
         return savingGoalRepository.findById(id);
     }
 
-    public SavingGoal modifySavingGoal(SavingGoal savingGoal) {
-        SavingGoal savingGoalToModify = savingGoalRepository.findById(savingGoal.getId()).get();
+    public SavingGoal modifySavingGoal(SavingsDTO savingGoalDTO) {
+        SavingGoal savingGoalToModify = savingGoalRepository.findById(savingGoalDTO.getId()).get();
+
+        SavingCategory savingCategory = savingCategoryService.getSavingCategoryById(savingGoalDTO.getSavingCategoryId()).get();
 
         savingGoalToModify.setNumberOfEdits(savingGoalToModify.getNumberOfEdits() + 1);
-        savingGoalToModify.setSavingCategory(savingGoal.getSavingCategory());
-        savingGoalToModify.setAmount(savingGoal.getAmount());
-        savingGoalToModify.setDescription(savingGoal.getDescription());
-        savingGoalToModify.setTimeOfLastEdit(savingGoal.getTimeOfLastEdit());
+        savingGoalToModify.setSavingCategory(savingCategory);
+        savingGoalToModify.setAmount(savingGoalDTO.getAmount());
+        savingGoalToModify.setDescription(savingGoalDTO.getDescription());
+        savingGoalToModify.setTimeOfLastEdit(LocalDateTime.now());
 
         savingGoalRepository.save(savingGoalToModify);
 

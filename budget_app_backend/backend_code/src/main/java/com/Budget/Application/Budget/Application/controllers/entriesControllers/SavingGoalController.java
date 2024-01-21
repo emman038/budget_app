@@ -41,11 +41,11 @@ public class SavingGoalController {
     };
 
     @PatchMapping
-    public ResponseEntity<SavingGoal> modifySavingGoal(SavingGoal savingGoal){
-        Optional<SavingGoal> optionalSavingGoal = savingGoalService.getSavingGoalById(savingGoal.getId());
+    public ResponseEntity<SavingGoal> modifySavingGoal(@RequestBody SavingsDTO savingGoalDTO){
+        Optional<SavingGoal> optionalSavingGoal = savingGoalService.getSavingGoalById(savingGoalDTO.getId());
 
         if (optionalSavingGoal.isPresent()){
-            return new ResponseEntity<>(savingGoalService.modifySavingGoal(savingGoal), HttpStatus.OK);
+            return new ResponseEntity<>(savingGoalService.modifySavingGoal(savingGoalDTO), HttpStatus.OK);
         }
 
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
