@@ -33,7 +33,7 @@ public class BudgetController {
         }
 
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-    }0
+    }
 
     @PostMapping
     public ResponseEntity<Budget> addBudget(@RequestBody BudgetExpenseDTO budgetDTO){

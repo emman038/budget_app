@@ -19,9 +19,9 @@ const EditEntryForm = ({ entryToEdit, listOfClassifications, postEntry, deleteEn
             case "BUDGET":
                 return <EditBudgetForm entryToEdit={entryToEdit} listOfExpenseCategories={listOfClassifications.expenseCategories} deleteEntry={deleteEntry} modifyEntry={modifyEntry} />
             case "ACTUAL_SAVING":
-                <EditActualSavingForm entryToEdit={entryToEdit} />
+                return <EditActualSavingForm entryToEdit={entryToEdit} listOfSavingCategories={listOfClassifications.savingCategories} deleteEntry={deleteEntry} modifyEntry={modifyEntry}/>
             case "SAVING_GOAL":
-                <EditSavingGoalForm entryToEdit={entryToEdit} />
+                return <EditSavingGoalForm entryToEdit={entryToEdit} listOfSavingCategories={listOfClassifications.savingCategories} deleteEntry={deleteEntry} modifyEntry={modifyEntry}/>
         };
     };
 

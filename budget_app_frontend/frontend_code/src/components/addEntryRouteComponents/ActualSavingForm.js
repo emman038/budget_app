@@ -52,13 +52,13 @@ const ActualSavingForm = ({listOfSavingCategories, postEntry}) => {
         <form id="actualSavingForm" onSubmit={handleFormSubmit}>
             <h2>Actual Savings Entry</h2>
             <p>(*) Required fields</p>
-            <label htmlFor="savingCategoriesSelect">Choose a source of income * </label>
+            <label htmlFor="savingCategoriesSelect">Choose a category for this entry * </label>
             <select required name="savingCategoryId" id="savingCategoriesSelect" onChange={handleChange} defaultValue="">
                 <option key="disabledSelectedSavingCategories" value="" disabled>--Please choose an option--</option>
                 {generateOptions()}
             </select>
 
-            <label htmlFor="descriptionInputBox">Write a description of the Actual Savings Entry </label>
+            <label htmlFor="descriptionInputBox">Write a description for this Entry </label>
             <textarea value={stateActualSaving.description} onChange={handleChange} name="description" type="text" maxLength={255} id="descriptionInputBox" autoComplete="on" placeholder="Enter a brief description of anything to note about this entry" />
 
             <label htmlFor="amountInput">Enter the Actual Savings amount *</label>
