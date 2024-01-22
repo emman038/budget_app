@@ -1,5 +1,6 @@
 package com.Budget.Application.Budget.Application.controllers.entriesControllers;
 
+import com.Budget.Application.Budget.Application.models.EntryType;
 import com.Budget.Application.Budget.Application.models.dtos.BudgetExpenseDTO;
 import com.Budget.Application.Budget.Application.models.entries.Budget;
 import com.Budget.Application.Budget.Application.services.entriesServices.BudgetService;
@@ -44,7 +45,7 @@ public class BudgetController {
     public ResponseEntity<Budget> modifyBudget(@RequestBody BudgetExpenseDTO budgetDTO){
         Optional<Budget> optionalBudget = budgetService.getBudgetById(budgetDTO.getId());
 
-        if (optionalBudget.isPresent()){
+        if (optionalBudget.isPresent() && budgetDTO.getEntryType().equals(EntryType.BUDGET)){
             return new ResponseEntity<>(budgetService.modifyBudget(budgetDTO), HttpStatus.OK);
         }
 
@@ -55,7 +56,7 @@ public class BudgetController {
     public ResponseEntity deleteBudgetById(@PathVariable Long id){
         Optional<Budget> optionalBudget = budgetService.getBudgetById(id);
 
-        if (optionalBudget.isPresent()){
+        if (optionalBudget.isPresent() && optionalBudget.get().getEntryType().equals(EntryType.BUDGET)){
             budgetService.deleteBudgetById(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }

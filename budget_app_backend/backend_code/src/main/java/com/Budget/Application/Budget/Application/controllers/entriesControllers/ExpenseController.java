@@ -1,5 +1,6 @@
 package com.Budget.Application.Budget.Application.controllers.entriesControllers;
 
+import com.Budget.Application.Budget.Application.models.EntryType;
 import com.Budget.Application.Budget.Application.models.dtos.BudgetExpenseDTO;
 import com.Budget.Application.Budget.Application.models.entries.Expense;
 import com.Budget.Application.Budget.Application.services.entriesServices.ExpenseService;
@@ -44,7 +45,7 @@ public class ExpenseController {
     public ResponseEntity<Expense> modifyExpense(@RequestBody BudgetExpenseDTO expenseDTO){
         Optional<Expense> optionalExpense = expenseService.getExpenseById(expenseDTO.getId());
 
-        if (optionalExpense.isPresent()){
+        if (optionalExpense.isPresent() && expenseDTO.getEntryType().equals(EntryType.EXPENSE)){
             return new ResponseEntity<>(expenseService.modifyExpense(expenseDTO), HttpStatus.OK);
         }
 
@@ -55,7 +56,7 @@ public class ExpenseController {
     public ResponseEntity deleteExpenseById(@PathVariable Long id){
         Optional<Expense> optionalExpense = expenseService.getExpenseById(id);
 
-        if (optionalExpense.isPresent()){
+        if (optionalExpense.isPresent() && optionalExpense.get().getEntryType().equals(EntryType.EXPENSE)){
             expenseService.deleteExpenseById(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }

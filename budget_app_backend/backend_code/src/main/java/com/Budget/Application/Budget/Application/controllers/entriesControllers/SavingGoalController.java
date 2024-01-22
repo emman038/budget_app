@@ -1,5 +1,6 @@
 package com.Budget.Application.Budget.Application.controllers.entriesControllers;
 
+import com.Budget.Application.Budget.Application.models.EntryType;
 import com.Budget.Application.Budget.Application.models.dtos.SavingsDTO;
 import com.Budget.Application.Budget.Application.models.entries.SavingGoal;
 import com.Budget.Application.Budget.Application.services.entriesServices.SavingGoalService;
@@ -44,7 +45,7 @@ public class SavingGoalController {
     public ResponseEntity<SavingGoal> modifySavingGoal(@RequestBody SavingsDTO savingGoalDTO){
         Optional<SavingGoal> optionalSavingGoal = savingGoalService.getSavingGoalById(savingGoalDTO.getId());
 
-        if (optionalSavingGoal.isPresent()){
+        if (optionalSavingGoal.isPresent() && savingGoalDTO.getEntryType().equals(EntryType.SAVING_GOAL)){
             return new ResponseEntity<>(savingGoalService.modifySavingGoal(savingGoalDTO), HttpStatus.OK);
         }
 
@@ -55,7 +56,7 @@ public class SavingGoalController {
     public ResponseEntity deleteSavingGoalById(@PathVariable Long id){
         Optional<SavingGoal> optionalSavingGoal = savingGoalService.getSavingGoalById(id);
 
-        if (optionalSavingGoal.isPresent()){
+        if (optionalSavingGoal.isPresent() && optionalSavingGoal.get().getEntryType().equals(EntryType.SAVING_GOAL)){
             savingGoalService.deleteSavingGoalsById(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }

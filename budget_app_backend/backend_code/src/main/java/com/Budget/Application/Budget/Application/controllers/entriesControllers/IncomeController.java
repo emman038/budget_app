@@ -1,5 +1,6 @@
 package com.Budget.Application.Budget.Application.controllers.entriesControllers;
 
+import com.Budget.Application.Budget.Application.models.EntryType;
 import com.Budget.Application.Budget.Application.models.dtos.IncomeDTO;
 import com.Budget.Application.Budget.Application.models.entries.Income;
 import com.Budget.Application.Budget.Application.services.entriesServices.IncomeService;
@@ -44,7 +45,7 @@ public class IncomeController {
     public ResponseEntity<Income> modifyIncome(@RequestBody IncomeDTO incomeDTO){
         Optional<Income> optionalIncome = incomeService.getIncomeById(incomeDTO.getId());
 
-        if (optionalIncome.isPresent()){
+        if (optionalIncome.isPresent() && incomeDTO.getEntryType().equals(EntryType.INCOME)){
             return new ResponseEntity<>(incomeService.modifyIncome(incomeDTO), HttpStatus.OK);
         }
 
@@ -55,7 +56,7 @@ public class IncomeController {
     public ResponseEntity deleteIncomeById(@PathVariable Long id){
         Optional<Income> optionalIncome = incomeService.getIncomeById(id);
 
-        if (optionalIncome.isPresent()){
+        if (optionalIncome.isPresent() && optionalIncome.get().getEntryType().equals(EntryType.INCOME)){
             incomeService.deleteIncomeById(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }

@@ -1,5 +1,6 @@
 package com.Budget.Application.Budget.Application.controllers.entriesControllers;
 
+import com.Budget.Application.Budget.Application.models.EntryType;
 import com.Budget.Application.Budget.Application.models.dtos.SavingsDTO;
 import com.Budget.Application.Budget.Application.models.entries.ActualSaving;
 import com.Budget.Application.Budget.Application.services.entriesServices.ActualSavingService;
@@ -44,7 +45,7 @@ public class ActualSavingController {
     public ResponseEntity<ActualSaving> modifyActualSaving(@RequestBody SavingsDTO actualSavingDTO){
         Optional<ActualSaving> optionalActualSaving = actualSavingService.getActualSavingById(actualSavingDTO.getId());
 
-        if (optionalActualSaving.isPresent()){
+        if (optionalActualSaving.isPresent() && actualSavingDTO.getEntryType().equals(EntryType.ACTUAL_SAVING)){
             return new ResponseEntity<>(actualSavingService.modifyActualSaving(actualSavingDTO), HttpStatus.OK);
         }
 
@@ -55,7 +56,7 @@ public class ActualSavingController {
     public ResponseEntity deleteActualSavingById(@PathVariable Long id){
         Optional<ActualSaving> optionalActualSaving = actualSavingService.getActualSavingById(id);
 
-        if (optionalActualSaving.isPresent()){
+        if (optionalActualSaving.isPresent() && optionalActualSaving.get().getEntryType().equals(EntryType.ACTUAL_SAVING)){
             actualSavingService.deleteActualSavingById(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }
