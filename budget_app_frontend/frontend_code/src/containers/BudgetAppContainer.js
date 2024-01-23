@@ -85,7 +85,7 @@ const BudgetAppContainer = () => {
                 },
                 {
                     path: "/select-time-frame",
-                    element: <TimeFrame />
+                    element: <TimeFrame listOfEntries={listOfEntries} currentTimeFrame={currentTimeFrame} setCurrentTimeFrame={setCurrentTimeFrame} setDashboardEntries={setDashboardEntries}/>
                 },
                 {
                     path: "/dashboard",

@@ -1,6 +1,8 @@
-const Year = () => {
+const Year = (listOfEntries , setCurrentTimeFrame , setDashboardEntries) => {
     return ( 
-        <p>This is the Year component</p>
+        <form>
+            
+        </form>
      );
 }
  
