@@ -36,6 +36,18 @@ const Year = ({ listOfEntries, setCurrentTimeFrame, handleDashboardSelection }) 
         handleDashboardSelection(selectedEntries);
     };
 
+    const handleSetCurrentTimeFrame = ()=>{
+        const indexesOfCheckedEntries = checkedStates.map((checkedState, index)=>{
+            return checkedState ? index: null;
+        });
+
+        const selectedEntries = listOfEntries.filter((entry, index)=>{
+            return indexesOfCheckedEntries.includes(index) ? entry : null;
+        });
+        
+        setCurrentTimeFrame(selectedEntries);
+    };
+
     return (
         <>
             {listOfEntries ?
@@ -43,7 +55,8 @@ const Year = ({ listOfEntries, setCurrentTimeFrame, handleDashboardSelection }) 
                     <form>
                         {generateYears()}
 
-                        <button onClick={handleDashboardClick}>View dashboard with the selected years</button>
+                        <button onClick={handleDashboardClick}>View dashboard with the selected year(s)</button>
+                        <button onClick={handleSetCurrentTimeFrame}>View specific months of selected year(s)</button>
                     </form>
                 ) :
                 <h2>You have not created any entries yet. Please go back and create some.</h2>}
