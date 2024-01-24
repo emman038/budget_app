@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Month = ({ currentTimeFrame }) => {
+const Month = ({ currentTimeFrame, handleDashboardSelection }) => {
 
     const [checkedStates, setCheckedStates] = useState({});
 
@@ -37,10 +37,21 @@ const Month = ({ currentTimeFrame }) => {
         );
     });
 
+    const handleDashboardClick = ()=>{
+
+        const listOfSelectedEntries = Object.keys(checkedStates).map((entry) => {
+            return checkedStates[entry] ? entry : null;
+        });
+        
+
+        handleDashboardSelection(selectedEntries);
+    };
+
     return (
-        <>
+        <form>
             {generateElements}
-        </>
+            <button onClick={handleDashboardClick}>View dashboard with the selected information</button>
+        </form>
     );
 }
 
