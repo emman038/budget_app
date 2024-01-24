@@ -1,35 +1,52 @@
 import { useState } from "react";
 
-const Year = ({listOfEntries, setCurrentTimeFrame, setDashboardEntries}) => {
+const Year = ({ listOfEntries, setCurrentTimeFrame, handleDashboardSelection }) => {
 
-    const [checkedState, setCheckedState] = useState([]);
+    const [checkedStates, setCheckedStates] = useState([]);
 
-    const handleChange = (index) => {
-        let copiedState = [...checkedState ];
-        copiedState[index] = !copiedState[index];
+    const handleChangeCheckbox = (index) => {
+        let copiedStates = [...checkedStates];
+        copiedStates[index] = !copiedStates[index];
 
-        setCheckedState(copiedState);
+        setCheckedStates(copiedStates);
     };
 
     const generateYears = () => {
-        return listOfEntries.map((entries, index) => {
-            checkedState.push(false);
+        return listOfEntries.map((entry, index) => {
+            checkedStates.push(false);
+
             return (
                 <label key={index}>
-                    {entries.year}
-                    <input type="checkbox" checked={checkedState[index]} onChange={() => { handleChange(index) }} />
+                    {entry.year}
+                    <input type="checkbox" checked={checkedStates[index]} onChange={() => { handleChangeCheckbox(index) }} />
                 </label>
             );
         });
     };
 
+    const handleDashboardClick = () => {
+        const indexesOfCheckedEntries = checkedStates.map((checkedState, index)=>{
+            return checkedState ? index: null;
+        });
+
+        const selectedEntries = listOfEntries.filter((entry, index)=>{
+            return indexesOfCheckedEntries.includes(index) ? entry : null;
+        });
+        
+        handleDashboardSelection(selectedEntries);
+    };
+
     return (
         <>
-            {
-                <form>
-                    {generateYears()}
-                </form>
-            }
+            {listOfEntries ?
+                (
+                    <form>
+                        {generateYears()}
+
+                        <button onClick={handleDashboardClick}>View dashboard with the selected years</button>
+                    </form>
+                ) :
+                <h2>You have not created any entries yet. Please go back and create some.</h2>}
         </>
     );
 }
