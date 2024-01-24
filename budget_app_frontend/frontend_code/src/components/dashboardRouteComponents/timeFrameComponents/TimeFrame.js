@@ -14,7 +14,7 @@ const TimeFrame = ({listOfEntries, currentTimeFrame , setCurrentTimeFrame , setD
     return ( 
         <main>
             <p>This is the timeFrame</p>
-            {!listOfEntries ? <p>Page Loading...</p> : (!currentTimeFrame ? <Year listOfEntries={listOfEntries} setCurrentTimeFrame={setCurrentTimeFrame} handleDashboardSelection={handleDashboardSelection}/> : <Month />)}
+            {!listOfEntries ? <p>Page Loading...</p> : (!currentTimeFrame ? <Year listOfEntries={listOfEntries} setCurrentTimeFrame={setCurrentTimeFrame} handleDashboardSelection={handleDashboardSelection}/> : <Month currentTimeFrame={currentTimeFrame}/>)}
         </main>
      );
 }

@@ -25,7 +25,7 @@ const LandingPage = ({setEntryToAdd, setCheckForMoreDetails}) => {
             <h2>App Description</h2>
             <p>lorem ipsum</p>
             <section>
-                <button onClick={()=>{navigate("/dashboard")}}>View Dashboard</button>
+                <button onClick={()=>{navigate("/select-time-frame")}}>View Dashboard</button>
                 <div className="dropdown-button">
                     <button onClick={handleDropdownClick}>Add Entry</button>
                     <div className={isOpen ? "dropdown-menu-show" : "dropdown-menu"}>
