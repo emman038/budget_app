@@ -61,7 +61,7 @@ const Month = ({ currentTimeFrame, handleDashboardSelection }) => {
             }
         });
 
-        selectedEntries.length > 0 ? handleDashboardSelection(selectedEntries) : alert("please select some entries");
+        selectedEntries.length > 0 ? handleDashboardSelection(selectedEntries) : alert("Please select some entries");
     };
 
     return (

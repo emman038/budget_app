@@ -35,7 +35,7 @@ const Year = ({ listOfEntries, setCurrentTimeFrame, handleDashboardSelection }) 
             return indexesOfCheckedEntries.includes(index) ? entry : null;
         });
         
-        selectedEntries.length > 0 ? handleDashboardSelection(selectedEntries) : alert("please select some entries");
+        selectedEntries.length > 0 ? handleDashboardSelection(selectedEntries) : alert("Please select some entries");
     };
 
     const handleSetCurrentTimeFrame = (event)=>{
@@ -49,7 +49,7 @@ const Year = ({ listOfEntries, setCurrentTimeFrame, handleDashboardSelection }) 
             return indexesOfCheckedEntries.includes(index) ? entry : null;
         });
         
-        selectedEntries.length > 0 ? setCurrentTimeFrame(selectedEntries) : alert("please select some entries");
+        selectedEntries.length > 0 ? setCurrentTimeFrame(selectedEntries) : alert("Please select some entries");
     };
 
     return (

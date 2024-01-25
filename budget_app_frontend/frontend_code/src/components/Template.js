@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 
-const Template = ({setEntryToAdd, setCheckForMoreDetails}) => {
+const Template = ({setEntryToAdd, setCheckForMoreDetails, setCurrentTimeFrame}) => {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -17,12 +17,16 @@ const Template = ({setEntryToAdd, setCheckForMoreDetails}) => {
         setCheckForMoreDetails(null);
     };
 
+    const handleSetCurrentTimeFrame = ()=>{
+        setCurrentTimeFrame(null);
+    };
+
     return (
         <>
             <nav>
                 <ul>
                     <li><Link to="/">Home</Link></li>
-                    <li><Link to="/select-time-frame">View Dashboard</Link></li>
+                    <li><Link to="/select-time-frame" onClick={handleSetCurrentTimeFrame}>View Dashboard</Link></li>
                     <div className="dropdown-button">
                         <button onClick={handleDropdownClick}>Add Entry</button>
                         <div className={isOpen ? "dropdown-menu-show" : "dropdown-menu"}>

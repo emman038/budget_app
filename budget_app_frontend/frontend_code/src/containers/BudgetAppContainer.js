@@ -77,11 +77,11 @@ const BudgetAppContainer = () => {
     const budgetAppRoutes = createBrowserRouter([
         {
             path: "/",
-            element: <Template setEntryToAdd={setEntryToAdd} setCheckForMoreDetails={setCheckForMoreDetails} />,
+            element: <Template setEntryToAdd={setEntryToAdd} setCheckForMoreDetails={setCheckForMoreDetails} setCurrentTimeFrame={setCurrentTimeFrame}/>,
             children: [
                 {
                     path: "/",
-                    element: <LandingPage setEntryToAdd={setEntryToAdd} setCheckForMoreDetails={setCheckForMoreDetails} />
+                    element: <LandingPage setEntryToAdd={setEntryToAdd} setCheckForMoreDetails={setCheckForMoreDetails} setCurrentTimeFrame={setCurrentTimeFrame}/>
                 },
                 {
                     path: "/select-time-frame",

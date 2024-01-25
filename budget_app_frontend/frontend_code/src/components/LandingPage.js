@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const LandingPage = ({setEntryToAdd, setCheckForMoreDetails}) => {
+const LandingPage = ({setEntryToAdd, setCheckForMoreDetails, setCurrentTimeFrame}) => {
 
     const navigate = useNavigate();
 
@@ -17,7 +17,12 @@ const LandingPage = ({setEntryToAdd, setCheckForMoreDetails}) => {
 
     const handleClickForExistingEntries = ()=>{
         setCheckForMoreDetails(null);
-        navigate("/select-entry")
+        navigate("/select-entry");
+    };
+
+    const handleClickForDashboard = ()=>{
+        setCurrentTimeFrame(null);
+        navigate("/select-time-frame");
     };
 
     return ( 
@@ -25,7 +30,7 @@ const LandingPage = ({setEntryToAdd, setCheckForMoreDetails}) => {
             <h2>App Description</h2>
             <p>lorem ipsum</p>
             <section>
-                <button onClick={()=>{navigate("/select-time-frame")}}>View Dashboard</button>
+                <button onClick={handleClickForDashboard}>View Dashboard</button>
                 <div className="dropdown-button">
                     <button onClick={handleDropdownClick}>Add Entry</button>
                     <div className={isOpen ? "dropdown-menu-show" : "dropdown-menu"}>
