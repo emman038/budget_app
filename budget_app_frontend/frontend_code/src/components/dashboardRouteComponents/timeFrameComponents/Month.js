@@ -37,14 +37,31 @@ const Month = ({ currentTimeFrame, handleDashboardSelection }) => {
         );
     });
 
-    const handleDashboardClick = ()=>{
+    const handleDashboardClick = (event) => {
+        event.preventDefault();
 
-        const listOfSelectedEntries = Object.keys(checkedStates).map((entry) => {
-            return checkedStates[entry] ? entry : null;
+        const checkedStateKeys = Object.keys(checkedStates);
+
+        const checkedYears = [];
+
+        for (let checkedState of checkedStateKeys) {
+            checkedYears.push(checkedState.split("-")[0]);
+        }
+
+        const distinctYears = Array.from(new Set(checkedYears));
+
+        const selectedEntries = currentTimeFrame.filter((entry) => {
+            return distinctYears.includes(`${entry.year}`) ? entry : null;
+        }).map((entry)=>{
+            return {
+                year: entry.year,
+                monthsList: entry.monthsList.filter((month)=>{
+                    return checkedStates[`${entry.year}-${month.month}`] ? month : null;
+                })
+            }
         });
-        
 
-        handleDashboardSelection(selectedEntries);
+        selectedEntries.length > 0 ? handleDashboardSelection(selectedEntries) : alert("please select some entries");
     };
 
     return (

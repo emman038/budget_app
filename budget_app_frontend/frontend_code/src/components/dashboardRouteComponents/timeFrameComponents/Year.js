@@ -24,7 +24,9 @@ const Year = ({ listOfEntries, setCurrentTimeFrame, handleDashboardSelection }) 
         });
     };
 
-    const handleDashboardClick = () => {
+    const handleDashboardClick = (event) => {
+        event.preventDefault();
+
         const indexesOfCheckedEntries = checkedStates.map((checkedState, index)=>{
             return checkedState ? index: null;
         });
@@ -33,10 +35,12 @@ const Year = ({ listOfEntries, setCurrentTimeFrame, handleDashboardSelection }) 
             return indexesOfCheckedEntries.includes(index) ? entry : null;
         });
         
-        handleDashboardSelection(selectedEntries);
+        selectedEntries.length > 0 ? handleDashboardSelection(selectedEntries) : alert("please select some entries");
     };
 
-    const handleSetCurrentTimeFrame = ()=>{
+    const handleSetCurrentTimeFrame = (event)=>{
+        event.preventDefault();
+
         const indexesOfCheckedEntries = checkedStates.map((checkedState, index)=>{
             return checkedState ? index: null;
         });
@@ -45,7 +49,7 @@ const Year = ({ listOfEntries, setCurrentTimeFrame, handleDashboardSelection }) 
             return indexesOfCheckedEntries.includes(index) ? entry : null;
         });
         
-        setCurrentTimeFrame(selectedEntries);
+        selectedEntries.length > 0 ? setCurrentTimeFrame(selectedEntries) : alert("please select some entries");
     };
 
     return (
